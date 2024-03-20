@@ -11,4 +11,8 @@ abstract contract BaseThread {
     }
 
     function getModuleID() public virtual returns (uint256); 
+
+    function getReturnValue(uint8 index) public view returns (uint256) {
+        return forest.getReturnValue(index);
+    }
 }
