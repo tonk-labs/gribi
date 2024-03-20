@@ -1,0 +1,18 @@
+.DS_STORE
+
+node_modules
+package-lock.json
+yarn.lock
+
+.eslintcache
+.parcel-cache
+.docs
+lerna-debug.log
+yarn-error.log
+.turbo
+
+# We don't want projects created from templates to ignore their lockfiles, but we don't
+# want to check them in here, so we'll ignore them from the root.
+templates/*/pnpm-lock.yaml
+
+.env

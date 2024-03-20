@@ -1,0 +1,28 @@
+{
+  "name": "gribi-circuits",
+  "version": "0.0.1",
+  "description": "",
+  "main": "./dist/gribi-circuits.umd.js",
+  "module": "./dist/dist/gribi-circuits.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/gribi-circuits.es.js",
+      "require": "./dist/gribi-circuits.umd.js",
+      "types": "./dist/gribi-circuits.index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "node scripts/build.js && vite build && npm run generate:types",
+    "generate:types": "tsc -p tsconfig.json --declaration --emitDeclarationOnly true --outdir ./dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "vite": "^5.1.4"
+  },
+  "dependencies": {
+    "@noir-lang/types": "^0.23.0"
+  }
+}

@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+      "target": "ESNext",
+      "useDefineForClassFields": true,
+      "module": "ESNext",
+      "moduleResolution": "Node",
+      "strict": true,
+      "jsx": "preserve",
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "esModuleInterop": true,
+      "lib": ["ESNext", "DOM"],
+      "skipLibCheck": true,
+      "baseUrl": "./",
+    },
+    "include": ["src/**/*.ts", "src/**/*.d.ts", "test/**/*.ts"],
+    "exclude": ["dist/**/*.ts"],
+    "references": [{ "path": "./tsconfig.node.json" }]
+  }
+  

@@ -1,0 +1,29 @@
+{
+	"include": ["src/**/*.test.ts"],
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "ESNext",
+		"lib": ["ESNext", "DOM"],
+		"moduleResolution": "Node",
+
+		"types": ["vitest"],
+
+		"strict": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"esModuleInterop": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noImplicitReturns": true,
+		"skipLibCheck": true,
+
+		"declaration": true,
+		"declarationDir": "dist",
+		"outDir": "dist",
+		"emitDeclarationOnly": true,
+
+		"useDefineForClassFields": true,
+		"suppressImplicitAnyIndexErrors": true,
+		"ignoreDeprecations": "5.0"
+	}
+}

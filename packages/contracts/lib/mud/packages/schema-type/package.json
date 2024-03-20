@@ -1,0 +1,48 @@
+{
+  "name": "@latticexyz/schema-type",
+  "version": "2.0.0-next.15",
+  "description": "SchemaType enum for various languages",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/latticexyz/mud.git",
+    "directory": "packages/schema-type"
+  },
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./dist/typescript/index.js",
+    "./deprecated": "./dist/typescript/deprecated/index.js"
+  },
+  "typesVersions": {
+    "*": {
+      "index": [
+        "./src/typescript/index.ts"
+      ],
+      "deprecated": [
+        "./src/typescript/deprecated/index.ts"
+      ]
+    }
+  },
+  "scripts": {
+    "build": "pnpm run build:js",
+    "build:js": "tsup",
+    "clean": "pnpm run clean:js",
+    "clean:js": "rimraf dist/typescript",
+    "dev": "tsup --watch",
+    "gas-report": "gas-report --save gas-report.json",
+    "test": "vitest typecheck --run && vitest --run && forge test",
+    "test:ci": "pnpm run test"
+  },
+  "dependencies": {
+    "abitype": "0.9.8",
+    "viem": "1.14.0"
+  },
+  "devDependencies": {
+    "@latticexyz/gas-report": "workspace:*",
+    "ds-test": "https://github.com/dapphub/ds-test.git#e282159d5170298eb2455a6c05280ab5a73a4ef0",
+    "forge-std": "https://github.com/foundry-rs/forge-std.git#74cfb77e308dd188d2f58864aaf44963ae6b88b1",
+    "tsup": "^6.7.0",
+    "vitest": "0.31.4"
+  },
+  "gitHead": "914a1e0ae4a573d685841ca2ea921435057deb8f"
+}

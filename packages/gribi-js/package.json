@@ -1,0 +1,72 @@
+{
+  "name": "gribi-js",
+  "author": "Goblin Oats <hello@tonk.gg> (https://github.com/goblinoats)",
+  "version": "0.0.1",
+  "license": "MIT",
+  "description": "Gribi js library to assist in hiding information",
+  "keywords": [
+    "zk",
+    "blockchain",
+    "privacy"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tonk-gg/gribi.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tonk-gg/gribi/issues"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/gribi.umd.js",
+  "module": "./dist/gribi.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/gribi.es.js",
+      "require": "./dist/gribi.umd.js",
+      "types": "./dist/gribi-js.index.d.ts"
+    }
+  },
+  "types": "./dist/gribi-js.index.d.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && npm run generate:types",
+    "clean": "rm -rf ./dist && rm -rf ./live-demo && rm -rf ./coverage",
+    "coverage:web": "http-server ./coverage",
+    "generate:types": "tsc -p tsconfig-build.json --declaration --emitDeclarationOnly true --outdir ./dist",
+    "changeset": "changeset",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run  --coverage",
+    "build:pages": "npm run docs:build && npm run build:live-demo",
+    "build:live-demo": "vite build --mode live-demo --outDir ./docs/.vitepress/dist/live-demo",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.26.2",
+    "@types/crypto-js": "^4.2.2",
+    "@types/node": "^20.11.5",
+    "@vitest/coverage-v8": "^0.34.6",
+    "jsdom": "^24.0.0",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5",
+    "vite-plugin-dts": "^3.7.2",
+    "vitepress": "^1.0.0-rc.24",
+    "vitest": "^0.34.6"
+  },
+  "peerDependencies": {
+    "@noir-lang/backend_barretenberg": "^0.23.0",
+    "@noir-lang/noir_js": "^0.23.0",
+    "@noir-lang/noirc_abi": "^0.23.0"
+  },
+  "dependencies": {
+    "crypto-js": "^4.2.0",
+    "gribi-circuits": "../circuits",
+    "rollup-plugin-copy": "^3.5.0",
+    "viem": "^2.7.22"
+  }
+}

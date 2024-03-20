@@ -1,0 +1,8 @@
+i.DS_Store
+/bin
+/snapshots
+docs
+FaucetStore
+/data
+API
+dist
