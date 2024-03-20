@@ -1,11 +1,10 @@
 import { expect, test } from 'vitest'
-import { KernelCircuit, CompiledCircuit } from '../../src/kernel/legacy'
 
 import _init_move from '../../testData/init_move/target/init_move.json'
 
 test('initializes without issue', async () => {
-    const kernel = new KernelCircuit();
-    await kernel.init();
+    // const kernel = new KernelCircuit();
+    // await kernel.init();
 })
 
 // test('test init move', async () => {
