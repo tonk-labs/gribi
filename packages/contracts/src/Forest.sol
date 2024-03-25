@@ -8,7 +8,6 @@ struct MerkleTrees {
     mapping(uint256 => bool) commitmentTree;
     mapping(uint256 => bool) nullifierTree;
     mapping(uint256 => uint256) publicTree;
-    uint256[] returnValues;
 }
 
 contract Forest {
@@ -23,7 +22,6 @@ contract Forest {
 
     constructor() {
         authorizedCaller = msg.sender;
-        treeStore.returnValues = new uint256[](256);
     }
 
 
@@ -51,13 +49,6 @@ contract Forest {
             revert();
         }
         treeStore.nullifierTree[nullifierKey] = true;
-    }
-    function getReturnValue(uint8 index) public view returns (uint256) {
-        return treeStore.returnValues[index];
-    }
-
-    function setReturnValue(uint8 index, uint256 value) public {
-        treeStore.returnValues[index] = value;
     }
 
     function getPublicState(uint256 slot) public view returns (PublicInput memory) {
