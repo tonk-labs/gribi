@@ -1,8 +1,8 @@
 import { toHex, sliceHex, keccak256, toBytes, encodeAbiParameters, concatHex, toFunctionSelector } from 'viem';
-import { Proof, PublicInput, Transaction, Operation, KernelCircuit } from './kernel';
-import { NetworkCall } from './kernel';
+import { Proof, PublicInput, Transaction, Operation, KernelCircuit } from '../../kernel';
+import { NetworkCall } from '../../kernel';
 import { CompiledCircuit } from '@noir-lang/backend_barretenberg';
-import { RootSystem, Signal } from './types'
+import { RootSystem, Signal } from '../../types'
 
 const Inputs = [  {
     "name": "transaction",
@@ -73,7 +73,7 @@ export type StateUpdate = {
   circuit?: CompiledCircuit
 }
 
-const createGribiTx = async (id: BigInt, method: string, inputs: PublicInput[], operations: Operation[], circuit?: CompiledCircuit): Promise<Transaction> {
+const createTx = async (id: BigInt, method: string, inputs: PublicInput[], operations: Operation[], circuit?: CompiledCircuit): Promise<Transaction> {
   //do stuff with the kernel
   let proof;
 
@@ -104,7 +104,7 @@ export class EVMRootSystem implements RootSystem<StateUpdate, Transaction> {
   async createTxs(signals: Signal<any,StateUpdate>[]): Promise<Transaction[]>{
     return Promise.all(signals.map((signal) => {
       const output = signal.output;
-      return createGribiTx(
+      return createTx(
         output.id,
         output.method,
         output.inputs,

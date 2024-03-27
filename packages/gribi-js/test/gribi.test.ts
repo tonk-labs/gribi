@@ -1,20 +1,25 @@
 import { expect, test } from 'vitest'
-import { Gribi } from '../src';
+import { EVMRootSystem, StateUpdate } from '../src';
+import { Signal } from 'src/types';
 
 const openBoxCall = "0x8b1dbfe70000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000a000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000300000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001";
 
-
 test('Encodes the call correctly', async () => {
-    debugger
-    const tx = await Gribi.createGribiTx(
-        BigInt("333"),
-        "openBox",
-        [{
-            slot: 0, value: 1
-        }],
-        [{
-            opid: 1, value: 3, nullifier: 1
-        }]
-    );
-    expect(tx.data).toBe(openBoxCall);
+    const evmRootSystem = new EVMRootSystem();
+    const signal: Signal<any, StateUpdate> = {
+        output: {
+            id: BigInt("333"),
+            method: "openBox",
+            inputs: 
+            [{
+                slot: 0, value: 1
+            }],
+            operations: 
+            [{
+                opid: 1, value: 3, nullifier: 1
+            }]
+        }
+    };
+    const txs = await evmRootSystem.createTxs([signal]);
+    expect(txs[0].data).toBe(openBoxCall);
 });
