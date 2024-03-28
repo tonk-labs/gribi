@@ -3,7 +3,6 @@ import { BarretenbergBackend } from '@noir-lang/backend_barretenberg';
 import { Noir } from "@noir-lang/noir_js";
 import * as CryptoJS from "crypto-js";
 import { toHex } from 'viem';
-import { Operation, PublicInput } from '../kernel';
 
 //This might seem really, really dumb but it's the easiest way to ensure parity
 

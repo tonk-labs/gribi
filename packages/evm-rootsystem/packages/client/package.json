@@ -19,16 +19,16 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/gribi.umd.js",
-  "module": "./dist/gribi.es.js",
+  "main": "./dist/evm-rootsystem.umd.js",
+  "module": "./dist/evm-rootsystem.es.js",
   "exports": {
     ".": {
-      "import": "./dist/gribi.es.js",
-      "require": "./dist/gribi.umd.js",
-      "types": "./dist/gribi-js.index.d.ts"
+      "import": "./dist/evm-rootsystem.es.js",
+      "require": "./dist/evm-rootsystem.umd.js",
+      "types": "./dist/evm-rootsystem.index.d.ts"
     }
   },
-  "types": "./dist/gribi-js.index.d.ts",
+  "types": "./dist/evm-rootsystem.index.d.ts",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -66,6 +66,8 @@
   "dependencies": {
     "crypto-js": "^4.2.0",
     "gribi-circuits": "../circuits",
+    "gribi-js": "../../../gribi-js",
+    "gribi-types": "../../../types",
     "rollup-plugin-copy": "^3.5.0",
     "viem": "^2.7.22"
   }

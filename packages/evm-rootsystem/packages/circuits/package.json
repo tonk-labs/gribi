@@ -23,7 +23,6 @@
     "vite": "^5.1.4"
   },
   "dependencies": {
-    "@noir-lang/types": "^0.23.0",
-    "@types/node": "^20.11.30"
+    "@noir-lang/types": "^0.23.0"
   }
 }

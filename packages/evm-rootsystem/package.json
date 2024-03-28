@@ -1,0 +1,11 @@
+{
+  "name": "evm-rootsystem",
+  "version": "0.0.1",
+  "description": "A Gribi rootsystem useful for creating, updating and managing hidden, verified compute on EVM-based chains.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Goblin Oats <hello@tonk.gg> (https://github.com/goblinoats)",
+  "license": "MIT"
+}
