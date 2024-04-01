@@ -23,6 +23,14 @@ export interface Receptor<
     signal(pcd: PCD<C,P>): Signal<I>;
 }
 
+export interface Transmitter<
+    C = any,
+    P = any,
+    I = any
+> { 
+    release(signal: Signal<I>): PCD<C,P>
+}
+
 /**
  * A {@link Signal} is sent into a rootsystem to do something (typically make a state update, some commitment or to
  * broadcast some data). Signals can be composed just like PCDs to do batch updates to a root system or to encapsulate

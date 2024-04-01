@@ -1,4 +1,5 @@
 // This script provides basic functions to use local storage as a key-value store.
+import { PCD, Signal } from "@gribi/types";
 
 
 export type PrivateEntry = {
@@ -8,8 +9,8 @@ export type PrivateEntry = {
 }
 
 type PrivateData = {
-    entries: PrivateEntry[], 
-    commitments: Record<string, PrivateEntry>
+    entries: PCD[], 
+    data: Record<string, PCD>
 }
 
 type ModuleData = {
@@ -31,7 +32,7 @@ function getModules(address: string): ModuleData {
  * @param address wallet address of caller
  * @returns 
  */
-function getEntries(address: string, namespace: string): PrivateEntry[] {
+function getEntries(address: string, namespace: string): PCD[] {
     initIfEmpty(address, namespace);
     return getItem(address)!.modules[namespace].entries;
 } 
@@ -42,12 +43,12 @@ function getEntries(address: string, namespace: string): PrivateEntry[] {
  * @param address wallet address of caller
  * @param entry local item being committed
  */
-function setEntry(address: string, namespace: string, entry: PrivateEntry) {
+function setEntry(address: string, namespace: string, entry: PCD) {
     initIfEmpty(address, namespace);
     const db = getItem(address)!;
     const privateData = db.modules[namespace];
     let existIndex = privateData.entries.findIndex((item) => {
-        return item.commitment === entry.commitment 
+        return item.uri === entry.uri
     });
 
     // this is an update operation
@@ -57,7 +58,7 @@ function setEntry(address: string, namespace: string, entry: PrivateEntry) {
         privateData.entries.push(entry);
     }
 
-    privateData.commitments[entry.commitment] = entry;
+    privateData.data[entry.uri.string] = entry;
     db.modules[namespace] = privateData;
     setItem(address, db);
 }
@@ -69,15 +70,15 @@ function setEntry(address: string, namespace: string, entry: PrivateEntry) {
  * @param address wallet address of caller
  * @param entry local item being removed
  */
-function removeEntry(address: string, namespace: string, entry: PrivateEntry) {
+function removeEntry(address: string, namespace: string, entry: PCD) {
     initIfEmpty(address, namespace);
     const db = getItem(address)!;
     const privateData = db.modules[namespace];
     let filtered = privateData.entries.filter((item) => {
-        return item.commitment !== entry.commitment 
+        return item.uri.string !== entry.uri.string
     });
     privateData.entries = filtered;
-    delete privateData.commitments[entry.commitment];
+    delete privateData.data[entry.uri.string];
     db.modules[namespace] = privateData;
     setItem(address, db);
 }
@@ -89,24 +90,10 @@ function removeEntry(address: string, namespace: string, entry: PrivateEntry) {
  * @param commitment commitment to retrieve
  * @returns 
  */
-function getDataAtSlot(address: string, namespace: string, slot: number): PrivateEntry | undefined {
+function getPCDForURI(address: string, namespace: string, uri: string): PCD | undefined {
     initIfEmpty(address, namespace);
     const privateData = getItem(address)!;
-    return privateData.modules[namespace].entries.find((entry) => entry.slot === slot);
-}
-
-/**
- * May be useful when searching for the private information which corresponds to a specific
- * commitment
- * 
- * @param address wallet address of the caller
- * @param commitment commitment to retrieve
- * @returns 
- */
-function getDataForCommitment(address: string, namespace: string, commitment: string): PrivateEntry | undefined {
-    initIfEmpty(address, namespace);
-    const privateData = getItem(address)!;
-    return privateData.modules[namespace].commitments[commitment]
+    return privateData.modules[namespace].entries.find((entry) => entry.uri.string === uri);
 }
 
 /**
@@ -120,14 +107,14 @@ function initIfEmpty(address: string, namespace: string) {
             modules: {
                 [namespace]: {
                     entries: [],
-                    commitments: {}
+                    data: {}
                 }
             }
         });
     } else if (!blob.modules[namespace]) {
         blob.modules[namespace] = {
             entries: [],
-            commitments: {}
+            data: {}
         }
         setItem(address, blob);
     }
@@ -175,6 +162,5 @@ export const Vault = {
     getEntries,
     setEntry,
     removeEntry,
-    getDataForCommitment,
-    getDataAtSlot
+    getPCDForURI
 }

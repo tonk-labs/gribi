@@ -10,7 +10,7 @@
  * 
  */
 
-export interface PCDURI {
+export class PCDURI {
     /**
      * Uniquely identifies this instance.
      */
@@ -34,11 +34,18 @@ export interface PCDURI {
     type: string;
 
     /**
-     * Generate URI format as described below:
+     * URI format as described below in string format
      * 
      * pcd://namespace/type/id
      */
-    generateURI(): string
+    string: string
+
+    constructor(namespace: string, type: string, id: string) {
+        this.id = id;
+        this.namespace = namespace;
+        this.type = type;
+        this.string = `pcd://${namespace}/${type}/${id}`
+    }
 }
 
 /**
