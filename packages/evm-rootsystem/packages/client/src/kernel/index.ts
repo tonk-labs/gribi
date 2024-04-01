@@ -1,7 +1,7 @@
 import { Hex } from 'viem'
-import { BarretenbergBackend, CompiledCircuit, ProofData } from '@noir-lang/backend_barretenberg';
-import { Noir, InputMap } from '@noir-lang/noir_js';
-import { InputValue } from '@noir-lang/noirc_abi';
+import { CompiledCircuit, ProofData } from '@noir-lang/backend_barretenberg';
+// import { Noir, InputMap } from '@noir-lang/noir_js';
+// import { InputValue } from '@noir-lang/noirc_abi';
 
 import _kernel from "gribi-circuits/kernel/target/circuits.json";
 

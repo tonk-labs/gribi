@@ -4,13 +4,14 @@ pragma solidity ^0.8.4;
 import { Forest } from './Forest.sol';
 import { Transaction } from './Structs.sol';
 
+
 struct UpdateRegister {
-    uint status;
+    uint code;
     bytes value;
 }
 
 abstract contract BaseThread {
-    uint[] codes; //these are return codes
+    uint[] codes;
     UpdateRegister internal register;
     Forest internal forest;
 
@@ -19,5 +20,7 @@ abstract contract BaseThread {
     }
 
     function getModuleID() public virtual pure returns (uint256); 
-    function peekUpdates() public virtual view returns (UpdateRegister memory);
+    function peekUpdates() public view returns (UpdateRegister memory) {
+        return register;
+    }
 }

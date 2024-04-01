@@ -89,7 +89,7 @@ export interface PCD<C = unknown, P = unknown> {
   init?: (initArgs: I) => Promise<void>;
 
   /**
-   * Generates an evaluator to prove and verify PCDs of namespace/type.
+   * Generates a module to prove and verify PCDs of namespace/type.
    * 
    * Also includes initArgs which is optional.  
    * @param type 

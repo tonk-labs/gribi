@@ -29,9 +29,8 @@ export interface Receptor<
  * the logic of one signal inside another for more complex signaling.
  */
 export interface Signal<
-    I = any,
     O = any,
 > {
-    transform?(inputs?: Signal<I>[]): Signal<O>[];
+    transform?(inputs?: Signal[]): Signal<O>[];
     output: O;
 }

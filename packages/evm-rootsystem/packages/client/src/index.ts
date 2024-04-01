@@ -51,16 +51,6 @@ const Inputs = [  {
     ]
   }];
 
-// const moduleABI = (method: string) => {
-//     return {
-//         inputs: Inputs,
-//         name: method,
-//         outputs: [],
-//         stateMutability: 'pure',
-//         type: 'function'
-//     }; 
-// }
-
 export interface Module<T> {
   createModuleCalls: (call: NetworkCall) => T;
 }
@@ -73,9 +63,9 @@ export type StateUpdate = {
   circuit?: CompiledCircuit
 }
 
-const createTx = async (id: BigInt, method: string, inputs: PublicInput[], operations: Operation[], circuit?: CompiledCircuit): Promise<Transaction> {
+const createTx = async (id: BigInt, method: string, inputs: PublicInput[], operations: Operation[], circuit?: CompiledCircuit): Promise<Transaction> => {
   //do stuff with the kernel
-  let proof;
+  let proof: any;
 
   // TODO Kernel Circuit stuff for now is commented out for testing
   // if (circuit != undefined) {
@@ -88,7 +78,7 @@ const createTx = async (id: BigInt, method: string, inputs: PublicInput[], opera
   //This might be a horrible hack and would be better to do it right way if can fix Viem
   const signature = toFunctionSelector(`${method}(((uint256,uint256)[],(uint256,uint256,uint256)[]))`);
   // const signature = sliceHex(keccak256(toHex(toBytes(`${method}(((uint256,uint256)[],(uint256,uint256,uint256)[]))`))), 0, 4);
-  const params = encodeAbiParameters(Inputs, [{ inputs, operations }])
+  const params = encodeAbiParameters(Inputs, [{ inputs, operations }]);
   const data = concatHex([signature, params ?? '0x']);
 
   //TODO: update proof to be right data type
@@ -113,5 +103,4 @@ export class EVMRootSystem implements RootSystem<StateUpdate, Transaction> {
       );
     }));
   }
-
 }
