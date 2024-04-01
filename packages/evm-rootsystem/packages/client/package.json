@@ -65,9 +65,8 @@
   },
   "dependencies": {
     "crypto-js": "^4.2.0",
-    "gribi-circuits": "../circuits",
-    "gribi-js": "../../../gribi-js",
-    "gribi-types": "../../../types",
+    "@gribi/evm-rootsystem-circuits": "../circuits",
+    "@gribi/types": "../../../types",
     "rollup-plugin-copy": "^3.5.0",
     "viem": "^2.7.22"
   }

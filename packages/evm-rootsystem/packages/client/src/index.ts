@@ -2,7 +2,7 @@ import { encodeAbiParameters, concatHex, toFunctionSelector } from 'viem';
 import { PublicInput, Transaction, Operation, KernelCircuit } from './kernel';
 import { NetworkCall } from './kernel';
 import { CompiledCircuit } from '@noir-lang/backend_barretenberg';
-import { RootSystem, Signal } from 'gribi-types';
+import { RootSystem, Signal } from '@gribi/types';
 
 const Inputs = [  {
     "name": "transaction",
@@ -91,7 +91,7 @@ const createTx = async (id: BigInt, method: string, inputs: PublicInput[], opera
 
 export class EVMRootSystem implements RootSystem<StateUpdate, Transaction> {
   walletAddress = "00";
-  async createTxs(signals: Signal<any,StateUpdate>[]): Promise<Transaction[]>{
+  async createTxs(signals: Signal<StateUpdate>[]): Promise<Transaction[]>{
     return Promise.all(signals.map((signal) => {
       const output = signal.output;
       return createTx(
