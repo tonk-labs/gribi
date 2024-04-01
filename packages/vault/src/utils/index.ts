@@ -1,4 +1,4 @@
-import { helpers } from 'gribi-circuits';
+import { helpers } from '@gribi/circuits';
 import { BarretenbergBackend } from '@noir-lang/backend_barretenberg';
 import { Noir } from "@noir-lang/noir_js";
 import * as CryptoJS from "crypto-js";

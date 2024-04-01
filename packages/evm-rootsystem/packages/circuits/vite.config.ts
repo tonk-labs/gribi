@@ -11,8 +11,8 @@ export default defineConfig(({ mode, command }) => {
       build: {
         lib: {
           entry: path.resolve(__dirname, 'index.ts'),
-          name: 'gribi-circuits',
-          fileName: (format) => `gribi-circuits.${format}.js`
+          name: '@gribi/evm-rootsystem-circuits',
+          fileName: (format) => `evm-rootsystem-circuits.${format}.js`
         }
       }
     }

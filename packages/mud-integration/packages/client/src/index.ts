@@ -1,4 +1,4 @@
-import { Vault } from "gribi-js"; 
+import { Vault } from "@gribi/vault"; 
 
 export const createSecrets = async (activeAddress: () => string) => {
   // we have the random commitment + random number

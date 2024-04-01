@@ -1,5 +1,5 @@
 {
-  "name": "evm-rootsystem-circuits",
+  "name": "@gribi/evm-rootsystem-circuits",
   "version": "0.0.1",
   "description": "",
   "main": "./dist/evm-rootsystem-circuits.umd.js",

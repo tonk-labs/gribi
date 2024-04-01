@@ -13,8 +13,8 @@ export default defineConfig(({ mode, command }) => {
       build: {
         lib: {
           entry: path.resolve(__dirname, 'src/index.ts'),
-          name: 'gribi-mud',
-          fileName: (format) => `gribi-mud.${format}.js`
+          name: '@gribi/mud',
+          fileName: (format) => `mud.${format}.js`
         }
       }
     }

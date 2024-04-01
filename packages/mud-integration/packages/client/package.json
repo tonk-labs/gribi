@@ -1,5 +1,5 @@
 {
-  "name": "gribi-mud",
+  "name": "@gribi/mud",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -12,13 +12,13 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/gribi-mud.umd.js",
-  "module": "./dist/gribi-mud.es.js",
+  "main": "./dist/mud.umd.js",
+  "module": "./dist/mud.es.js",
   "exports": {
     ".": {
-      "import": "./dist/gribi-mud.es.js",
-      "require": "./dist/gribi-mud.umd.js",
-      "types": "./dist/index.d.ts"
+      "import": "./dist/mud.es.js",
+      "require": "./dist/mud.umd.js",
+      "types": "./dist/mud.index.d.ts"
     }
   },
   "devDependencies": {
@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "mud": "^1.41.2",
-    "viem": "^2.7.19"
+    "viem": "^2.7.19",
+    "@gribi/vault": "../../../vault"
   }
 }

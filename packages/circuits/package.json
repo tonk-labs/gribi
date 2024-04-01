@@ -1,14 +1,14 @@
 {
-  "name": "gribi-circuits",
+  "name": "@gribi/circuits",
   "version": "0.0.1",
   "description": "",
-  "main": "./dist/gribi-circuits.umd.js",
-  "module": "./dist/dist/gribi-circuits.es.js",
+  "main": "./dist/circuits.umd.js",
+  "module": "./dist/dist/circuits.es.js",
   "exports": {
     ".": {
-      "import": "./dist/gribi-circuits.es.js",
-      "require": "./dist/gribi-circuits.umd.js",
-      "types": "./dist/gribi-circuits.index.d.ts"
+      "import": "./dist/circuits.es.js",
+      "require": "./dist/circuits.umd.js",
+      "types": "./dist/circuits.index.d.ts"
     }
   },
   "scripts": {

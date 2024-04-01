@@ -1,9 +1,9 @@
 {
-  "name": "gribi-cli",
+  "name": "@gribi/cli",
   "version": "1.0.0",
   "description": "",
-  "main": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/cli.mjs",
+  "types": "./dist/cli.d.ts",
   "scripts": {
     "test": "vitest",
     "coverage": "vitest --coverage",

@@ -1,5 +1,5 @@
 {
-  "name": "gribi-js",
+  "name": "@gribi/types",
   "author": "Goblin Oats <hello@tonk.gg> (https://github.com/goblinoats)",
   "version": "0.0.1",
   "license": "MIT",
@@ -19,16 +19,16 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/gribi-types.umd.js",
-  "module": "./dist/gribi-types.es.js",
+  "main": "./dist/types.umd.js",
+  "module": "./dist/types.es.js",
   "exports": {
     ".": {
-      "import": "./dist/gribi-types.es.js",
-      "require": "./dist/gribi-types.umd.js",
-      "types": "./dist/gribi-types.index.d.ts"
+      "import": "./dist/types.es.js",
+      "require": "./dist/types.umd.js",
+      "types": "./dist/types.index.d.ts"
     }
   },
-  "types": "./dist/gribi-types.index.d.ts",
+  "types": "./dist/types.index.d.ts",
   "type": "module",
   "scripts": {
     "dev": "vite",
