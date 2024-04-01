@@ -29,6 +29,7 @@
   "dependencies": {
     "mud": "^1.41.2",
     "viem": "^2.7.19",
-    "@gribi/vault": "../../../vault"
+    "@gribi/vault": "../../../vault",
+    "@gribi/evm-rootsystem": "../../../evm-rootsystem/packages/client"
   }
 }

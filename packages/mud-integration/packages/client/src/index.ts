@@ -1,4 +1,5 @@
 import { Vault } from "@gribi/vault"; 
+import { Transaction } from "@gribi/evm-rootsystem";
 
 export const createSecrets = async (activeAddress: () => string) => {
   // we have the random commitment + random number
@@ -8,3 +9,10 @@ export const createSecrets = async (activeAddress: () => string) => {
   //Maybe here we could actually use the selectors? Since the entries kind of suck
   return { ...Vault.getModules(activeAddress()) }
 }
+
+export type NetworkCall = (tx: Transaction) => Promise<void>
+
+export interface Module<T> {
+  createModuleCalls: (call: NetworkCall) => T;
+}
+

@@ -1,8 +1,9 @@
 import { encodeAbiParameters, concatHex, toFunctionSelector } from 'viem';
-import { PublicInput, Transaction, Operation, KernelCircuit } from './kernel';
 import { NetworkCall } from './kernel';
 import { CompiledCircuit } from '@noir-lang/backend_barretenberg';
 import { RootSystem, Signal } from '@gribi/types';
+import { Hex } from 'viem'
+import { ProofData } from '@noir-lang/backend_barretenberg';
 
 const Inputs = [  {
     "name": "transaction",
@@ -50,6 +51,38 @@ const Inputs = [  {
       }
     ]
   }];
+
+export type Field = number | bigint | string;
+
+export type PublicInput = {
+    slot: Field,
+    value: Field
+}
+
+export type Operation = {
+    opid: Field,
+    value?: Field,
+    nullifier?: Field,
+}
+
+// we need a Merkle Tree class, but for nw these are fine
+export type Roots = {
+    commitment: string,
+    nullifier: string,
+    public: string
+}
+
+export type Proof = {
+    inputs?: PublicInput[],
+    //not sure what's in here but we'll assume it's something interesting
+    data: ProofData | undefined
+}
+
+export type Transaction = {
+    id: BigInt,
+    data: Hex,
+    proof?: Proof,
+}
 
 export interface Module<T> {
   createModuleCalls: (call: NetworkCall) => T;

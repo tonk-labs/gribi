@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@gribi/evm-rootsystem':
+    specifier: ../../../evm-rootsystem/packages/client
+    version: link:../../../evm-rootsystem/packages/client
   '@gribi/vault':
     specifier: ../../../vault
     version: link:../../../vault
