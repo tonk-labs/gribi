@@ -1,9 +1,8 @@
 import { Hex } from 'viem'
 import { CompiledCircuit, ProofData } from '@noir-lang/backend_barretenberg';
+import { Field } from '@gribi/types';
 // import { Noir, InputMap } from '@noir-lang/noir_js';
 // import { InputValue } from '@noir-lang/noirc_abi';
-
-export type Field = number | bigint | string;
 
 export type PublicInput = {
     slot: Field,
