@@ -13,7 +13,7 @@ type PrivateData = {
     data: Record<string, PCD>
 }
 
-type ModuleData = {
+export type ModuleData = {
     modules: Record<string, PrivateData>
 }
 
@@ -25,7 +25,7 @@ type ModuleData = {
 function getModules(address: string): ModuleData {
     let db = getItem(address);
     return db === undefined ? { modules: {} } : db!;
-} 
+}
 
 /**
  * This returns all private entries currently held by user

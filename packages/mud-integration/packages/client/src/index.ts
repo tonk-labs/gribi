@@ -1,7 +1,7 @@
-import { Vault } from "@gribi/vault"; 
+import { Vault, ModuleData } from "@gribi/vault"; 
 import { Transaction } from "@gribi/evm-rootsystem";
 
-export const createSecrets = async (activeAddress: () => string) => {
+export const createSecrets = async (activeAddress: () => string): Promise<ModuleData> => {
   // we have the random commitment + random number
   // we have the inventory of treasure with the commitment to that treasure item
   // we have a nullifier & nonce used to eliminate that treasure item
