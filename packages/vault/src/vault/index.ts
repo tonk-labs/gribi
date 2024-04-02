@@ -1,16 +1,19 @@
 // This script provides basic functions to use local storage as a key-value store.
-import { PCD, Signal } from "@gribi/types";
+import { PCD, PCDURI } from "@gribi/types";
 
 
 export type PrivateEntry = {
-    commitment: string,
-    slot: number,
-    value: any,
+    slot: number;
+    pcd: PCDURI; 
+    witness: any;
+    displayValue?: any;
 }
 
+const PCD_STORAGE_ID = "___GRIBI_PCD";
+
 type PrivateData = {
-    entries: PCD[], 
-    data: Record<string, PCD>
+    entries: PrivateEntry[], 
+    data: Record<string, PrivateEntry>
 }
 
 export type ModuleData = {
@@ -32,10 +35,58 @@ function getModules(address: string): ModuleData {
  * @param address wallet address of caller
  * @returns 
  */
-function getEntries(address: string, namespace: string): PCD[] {
+function getEntries(address: string, namespace: string): PrivateEntry[] {
     initIfEmpty(address, namespace);
     return getItem(address)!.modules[namespace].entries;
 } 
+
+/**
+ * Stores PCDs for later use
+ * @param pcd 
+ */
+function storePCD(pcd: PCD) {
+    if (localStorage.getItem(PCD_STORAGE_ID) == null) {
+        localStorage.setItem(PCD_STORAGE_ID, JSON.stringify({
+            namespaces: {},
+        })); 
+    }
+    const index = JSON.parse(localStorage.getItem(PCD_STORAGE_ID)!);
+    const namespace = index.namespaces[pcd.uri.namespace];
+    const types = namespace && index.namespaces[pcd.uri.namespace].types;
+    const newIndex = {
+        namespaces: {
+            ...index.namespaces,
+            [namespace]: {
+                types: {
+                    ...(types || {}),
+                    [pcd.uri.id]: {
+                        ...pcd
+                    }
+                }
+            }
+        }
+    };
+    localStorage.setItem(PCD_STORAGE_ID, JSON.stringify(newIndex));
+}
+
+/**
+ * Retrieves PCDs if necessary
+ * @param uri 
+ * @returns 
+ */
+function retrievePCD(uri: PCDURI): PCD | null {
+    if (localStorage.getItem(PCD_STORAGE_ID) == null) {
+        localStorage.setItem(PCD_STORAGE_ID, JSON.stringify({
+            namespaces: {},
+        })); 
+
+        return null;
+    }
+    const index = JSON.parse(localStorage.getItem(PCD_STORAGE_ID)!);
+    const namespace = index.namespaces[uri.namespace];
+    const types = namespace && index.namespaces[uri.namespace].types;
+    return namespace && types && index[namespace][types][uri.id];
+}
 
 /**
  * Set entry in the vault
@@ -43,12 +94,12 @@ function getEntries(address: string, namespace: string): PCD[] {
  * @param address wallet address of caller
  * @param entry local item being committed
  */
-function setEntry(address: string, namespace: string, entry: PCD) {
+function setEntry(address: string, namespace: string, entry: PrivateEntry) {
     initIfEmpty(address, namespace);
     const db = getItem(address)!;
     const privateData = db.modules[namespace];
     let existIndex = privateData.entries.findIndex((item) => {
-        return item.uri === entry.uri
+        return item.slot === entry.slot
     });
 
     // this is an update operation
@@ -58,7 +109,7 @@ function setEntry(address: string, namespace: string, entry: PCD) {
         privateData.entries.push(entry);
     }
 
-    privateData.data[entry.uri.string] = entry;
+    privateData.data[entry.slot] = entry;
     db.modules[namespace] = privateData;
     setItem(address, db);
 }
@@ -70,15 +121,15 @@ function setEntry(address: string, namespace: string, entry: PCD) {
  * @param address wallet address of caller
  * @param entry local item being removed
  */
-function removeEntry(address: string, namespace: string, entry: PCD) {
+function removeEntry(address: string, namespace: string, entry: PrivateEntry) {
     initIfEmpty(address, namespace);
     const db = getItem(address)!;
     const privateData = db.modules[namespace];
     let filtered = privateData.entries.filter((item) => {
-        return item.uri.string !== entry.uri.string
+        return item.slot !== entry.slot
     });
     privateData.entries = filtered;
-    delete privateData.data[entry.uri.string];
+    delete privateData.data[entry.slot];
     db.modules[namespace] = privateData;
     setItem(address, db);
 }
@@ -87,13 +138,13 @@ function removeEntry(address: string, namespace: string, entry: PCD) {
  * 
  * @param address wallet address of the caller
  * @param namespace namespace of the module 
- * @param commitment commitment to retrieve
+ * @param slot slot where data is stored 
  * @returns 
  */
-function getPCDForURI(address: string, namespace: string, uri: string): PCD | undefined {
+function getDataAtSlot(address: string, namespace: string, slot: number): PrivateEntry | undefined {
     initIfEmpty(address, namespace);
     const privateData = getItem(address)!;
-    return privateData.modules[namespace].entries.find((entry) => entry.uri.string === uri);
+    return privateData.modules[namespace].entries.find((entry) => entry.slot === slot);
 }
 
 /**
@@ -162,5 +213,7 @@ export const Vault = {
     getEntries,
     setEntry,
     removeEntry,
-    getPCDForURI
+    getDataAtSlot, 
+    storePCD,
+    retrievePCD
 }

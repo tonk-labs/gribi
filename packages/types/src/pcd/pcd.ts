@@ -103,7 +103,7 @@ export interface PCD<C = unknown, P = unknown> {
    * @param initArgs 
    * @returns 
    */
-  module: <C,P,A>(type: string, initArgs?: I) => Promise<PCDModule<C,P,A>>;
+  module: (type?: string, initArgs?: I) => Promise<PCDModule>;
 
 }
 
