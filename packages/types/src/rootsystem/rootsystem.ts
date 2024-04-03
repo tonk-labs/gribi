@@ -18,9 +18,10 @@ export interface RootSystem <
 export interface Receptor<
     C = any,
     P = any,
-    I = any
+    I = any,
+    A = any
 > {
-    signal(pcd: PCD<C,P>): Signal<I>;
+    signal(pcd: PCD<C,P>, args?: A): Signal<I>;
 }
 
 export interface Transmitter<

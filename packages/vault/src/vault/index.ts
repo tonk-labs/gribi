@@ -2,11 +2,11 @@
 import { PCD, PCDURI } from "@gribi/types";
 
 
-export type PrivateEntry = {
+export type PrivateEntry<V = unknown, D = unknown> = {
     slot: number;
-    pcd: PCDURI; 
-    witness: any;
-    displayValue?: any;
+    pcd?: PCDURI; 
+    value: V;
+    displayValue?: D;
 }
 
 const PCD_STORAGE_ID = "___GRIBI_PCD";
