@@ -13,7 +13,7 @@ export interface RootSystem <
 }
 
 /**
- * A {@link Receptor} takes a type of {@link PCD} and transforms it into a {@link Signal}. 
+ * A {@link Receptor} takes any type and transforms it into a {@link Signal}. 
  */
 export interface Receptor<
     C = any,
@@ -21,15 +21,14 @@ export interface Receptor<
     I = any,
     A = any
 > {
-    signal(pcd: PCD<C,P>, args?: A): Signal<I>;
+    signal(args: A): Signal<I>;
 }
 
 export interface Transmitter<
-    C = any,
-    P = any,
+    A = any,
     I = any
 > { 
-    release(signal: Signal<I>): PCD<C,P>
+    release(signal: Signal<I>): A
 }
 
 /**

@@ -83,7 +83,7 @@ const createTx = async (id: BigInt, method: string, inputs: PublicInput[], opera
   });
 }
 
-export class EVMRootSystem implements RootSystem<StateUpdate, Transaction> {
+class _EVMRootSystem implements RootSystem<StateUpdate, Transaction> {
   walletAddress = "00";
   async createTxs(signals: Signal<StateUpdate>[]): Promise<Transaction[]>{
     return Promise.all(signals.map((signal) => {
@@ -98,3 +98,5 @@ export class EVMRootSystem implements RootSystem<StateUpdate, Transaction> {
     }));
   }
 }
+
+export const EVMRootSystem = new _EVMRootSystem();
