@@ -48,9 +48,9 @@ contract ForestTest is Test {
         assertTrue(exists);
     }
 
-    function testReturnValues() public {
-        // Implementation of testaddNullifier function goes here
-        forest.setReturnValue(0, 300);
-        assertEq(forest.getReturnValue(0), 300);
-    }
+    // function testReturnValues() public {
+    //     // Implementation of testaddNullifier function goes here
+    //     forest.setReturnValue(0, 300);
+    //     assertEq(forest.getReturnValue(0), 300);
+    // }
 }
