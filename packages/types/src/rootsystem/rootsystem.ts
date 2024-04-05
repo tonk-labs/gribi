@@ -14,8 +14,8 @@ export interface RootSystem <
  * A {@link Receptor} takes any type and transforms it into a {@link Signal}. 
  */
 export interface Receptor<
-    I = any,
-    A = any
+    A = any,
+    I = any
 > {
     signal(args: A): Promise<Signal<I>>;
 }
