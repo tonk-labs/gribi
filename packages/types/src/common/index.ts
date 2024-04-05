@@ -13,5 +13,5 @@ export interface Precursor<
     C = any,
     W = any
 > {
-    bind(args: A): Promise<WitnessRelation<C, W>>;
+    bond(args: A): Promise<WitnessRelation<C, W>>;
 }
