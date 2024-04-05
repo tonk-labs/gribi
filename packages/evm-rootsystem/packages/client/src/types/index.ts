@@ -38,5 +38,5 @@ export type StateUpdate = {
   method: string,
   inputs: PublicInput[],
   operations: Operation[],
-  circuit?: CompiledCircuit
+  proof?: ProofData 
 }

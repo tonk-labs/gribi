@@ -5,7 +5,14 @@ import { Noir } from '@noir-lang/noir_js'
 import { PublicInput, Operation, EVMRootSystem } from 'src';
 import { Forest } from '../forest'; 
 
-export const proveTransaction = async (address: string, circuit: CompiledCircuit, inputs: PublicInput[], operations: Operation[], witnessMap: InputMap): Promise<ProofData> => {
+const generateProof = async (circuit: CompiledCircuit, inputs: InputMap): Promise<ProofData> => {
+    const be = new BarretenbergBackend(circuit);
+    const noir  = new Noir(circuit, be);
+    const { witness } = await noir.execute(inputs);
+    return be.generateIntermediateProof(witness);
+} 
+
+export const prove = async (address: string, circuit: CompiledCircuit, inputs: PublicInput[], operations: Operation[], witnessMap: InputMap): Promise<ProofData> => {
     const roots = Forest.getRoots();
     if (inputs.length > 8 ) {
         throw new Error("inputs cannot exceed size of 8 entries");
@@ -39,10 +46,3 @@ export const proveTransaction = async (address: string, circuit: CompiledCircuit
 
     return generateProof(circuit, witnessMap);
 }
-
-export const generateProof = async (circuit: CompiledCircuit, inputs: InputMap): Promise<ProofData> => {
-    const be = new BarretenbergBackend(circuit);
-    const noir  = new Noir(circuit, be);
-    const { witness } = await noir.execute(inputs);
-    return be.generateIntermediateProof(witness);
-} 

@@ -57,7 +57,7 @@ export interface Module<T> {
   createModuleCalls: (call: NetworkCall) => T;
 }
 
-const createTx = async (id: BigInt, method: string, inputs: PublicInput[], operations: Operation[], circuit?: CompiledCircuit): Promise<Transaction> => {
+const createTx = async (update: StateUpdate): Promise<Transaction> => {
   //do stuff with the kernel
   let proof: any;
 
@@ -70,16 +70,16 @@ const createTx = async (id: BigInt, method: string, inputs: PublicInput[], opera
   // }
 
   //This might be a horrible hack and would be better to do it right way if can fix Viem
-  const signature = toFunctionSelector(`${method}(((uint256,uint256)[],(uint256,uint256,uint256)[]))`);
+  const signature = toFunctionSelector(`${update.method}(((uint256,uint256)[],(uint256,uint256,uint256)[]))`);
   // const signature = sliceHex(keccak256(toHex(toBytes(`${method}(((uint256,uint256)[],(uint256,uint256,uint256)[]))`))), 0, 4);
-  const params = encodeAbiParameters(Inputs, [{ inputs, operations }]);
+  const params = encodeAbiParameters(Inputs, [{ inputs: update.inputs, operations: update.operations }]);
   const data = concatHex([signature, params ?? '0x']);
 
   //TODO: update proof to be right data type
   return proof === undefined ? ({
-      id, data 
+      id: update.id, data 
   }) : ({
-      id, data, proof
+      id: update.id, data, proof
   });
 }
 
@@ -88,13 +88,7 @@ class _EVMRootSystem implements RootSystem<StateUpdate, Transaction> {
   async createTxs(signals: Signal<StateUpdate>[]): Promise<Transaction[]>{
     return Promise.all(signals.map((signal) => {
       const output = signal.output;
-      return createTx(
-        output.id,
-        output.method,
-        output.inputs,
-        output.operations,
-        output.circuit
-      );
+      return createTx(output);
     }));
   }
 }
