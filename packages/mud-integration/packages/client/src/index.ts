@@ -1,10 +1,9 @@
-import { Vault, PrivateEntry } from "@gribi/vault";
-import { EVMRootSystem, Transaction } from "@gribi/evm-rootsystem";
+import {  Transaction } from "@gribi/evm-rootsystem";
 
 export interface Selector<
   S = unknown
 > {
-  select(): S;
+  select(): S | null;
 }
 
 export type SelectorInfo = {
