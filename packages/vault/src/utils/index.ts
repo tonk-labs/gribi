@@ -1,8 +1,10 @@
 import { helpers } from '@gribi/circuits';
-import { BarretenbergBackend } from '@noir-lang/backend_barretenberg';
-import { Noir } from "@noir-lang/noir_js";
+import { CompiledCircuit, BarretenbergBackend, ProofData } from '@noir-lang/backend_barretenberg';
+import { InputMap } from '@noir-lang/noirc_abi';
+import { Noir } from '@noir-lang/noir_js'
 import * as CryptoJS from "crypto-js";
 import { toHex } from 'viem';
+
 
 //This might seem really, really dumb but it's the easiest way to ensure parity
 
@@ -47,9 +49,17 @@ function rng(bitsSecurity?: number): BigInt {
 const EmptyOp = () => ({ opid: 0, value: 0, nullifier: 0 });
 const EmptyInput = () => ({ slot: 0, value: 0 });
 
+const generateNoirProof = async (circuit: CompiledCircuit, inputs: InputMap): Promise<ProofData> => {
+    const be = new BarretenbergBackend(circuit);
+    const noir  = new Noir(circuit, be);
+    const { witness } = await noir.execute(inputs);
+    return be.generateIntermediateProof(witness);
+} 
+
 export const Utils = {
     pedersenHash,
     rng,
+    generateNoirProof,
     EmptyInput,
     EmptyOp,
 }
