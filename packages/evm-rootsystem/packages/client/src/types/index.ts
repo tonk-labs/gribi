@@ -28,13 +28,13 @@ export type Proof = {
 }
 
 export type Transaction = {
-    id: BigInt,
+    id: Field,
     data: Hex,
     proof?: Proof,
 }
 
 export type StateUpdate = {
-  id: BigInt,
+  id: Field,
   method: string,
   inputs: PublicInput[],
   operations: Operation[],
