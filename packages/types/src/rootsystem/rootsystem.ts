@@ -17,14 +17,14 @@ export interface Receptor<
     I = any,
     A = any
 > {
-    signal(args: A): Signal<I>;
+    signal(args: A): Promise<Signal<I>>;
 }
 
 export interface Transmitter<
     A = any,
     I = any
 > { 
-    release(signal: Signal<I>): A
+    release(signal: Signal<I>): Promise<A>
 }
 
 /**
@@ -35,6 +35,6 @@ export interface Transmitter<
 export interface Signal<
     O = any,
 > {
-    transform?(inputs?: Signal[]): Signal<O>[];
+    transform?(inputs?: Signal[]): Promise<Signal<O>[]>;
     output: O;
 }
