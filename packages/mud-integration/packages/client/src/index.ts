@@ -2,16 +2,13 @@ import { Vault, PrivateEntry } from "@gribi/vault";
 import { EVMRootSystem, Transaction } from "@gribi/evm-rootsystem";
 
 export interface Selector<
-  A = unknown, 
   S = unknown
 > {
-  select(entry: PrivateEntry<A>): S;
+  select(): S;
 }
 
 export type SelectorInfo = {
   selector: Selector;
-  slot: number;
-  module: string;
   children: StateMap;
 }
 
@@ -34,12 +31,7 @@ export const createSecretsState = (stateMap: StateMap): <S>() => S => {
         state[key] = createSecretsState(stateMap[key].children);
       } else {
         const info = stateMap[key];
-        const entry = Vault.getDataAtSlot(EVMRootSystem.walletAddress, info.module, info.slot);
-        if (entry) {
-          state[key] = info.selector.select(entry);
-        } else {
-          state[key] = null;
-        }
+        state[key] = info.selector.select();
       }
     });
 
