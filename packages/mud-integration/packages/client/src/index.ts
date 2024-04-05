@@ -7,8 +7,8 @@ export interface Selector<
 }
 
 export type SelectorInfo = {
-  selector: Selector;
-  children: StateMap;
+  selector?: Selector;
+  children?: StateMap;
 }
 
 export type StateMap = {
@@ -26,10 +26,10 @@ export const createSecretsState = (stateMap: StateMap): <S>() => S => {
     const keys = Object.keys(stateMap);
     keys.forEach((key) => {
       // recurse 
-      if (stateMap[key].children) {
-        state[key] = createSecretsState(stateMap[key].children);
-      } else {
-        const info = stateMap[key];
+      const info = stateMap[key];
+      if (info.children) {
+        state[key] = createSecretsState(info.children!);
+      } else if (info.selector) {
         state[key] = info.selector.select();
       }
     });
