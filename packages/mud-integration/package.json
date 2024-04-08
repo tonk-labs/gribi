@@ -1,13 +1,13 @@
 {
-  "name": "gribi-mud",
+  "name": "@gribi/mud",
   "version": "1.0.0",
   "description": "",
-  "main": "./packages/client/dist/gribi-mud.umd.js",
-  "module": "./packages/client/dist/gribi-mud.es.js",
+  "main": "./packages/client/dist/mud.umd.js",
+  "module": "./packages/client/dist/mud.es.js",
   "exports": {
     ".": {
-      "import": "./packages/client/dist/gribi-mud.es.js",
-      "require": "./packages/client/dist/gribi-mud.umd.js",
+      "import": "./packages/client/dist/mud.es.js",
+      "require": "./packages/client/dist/mud.umd.js",
       "types": "./packages/client/dist/index.d.ts"
     }
   },

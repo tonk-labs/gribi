@@ -1,36 +1,54 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.4;
 
 import { System } from "@latticexyz/world/src/System.sol";
 import { GribiConfig } from "../codegen/index.sol";
-import { Gribi, PublicInput } from "@gribi/src/Gribi.sol";
-import { Operation, Proof, Transaction } from "@gribi/src/Structs.sol";
-import { BaseThread } from "@gribi/src/BaseThread.sol";
-import { Forest } from "@gribi/src/Forest.sol";
+import { Gribi } from "@gribi/evm-rootsystem/Gribi.sol";
+import { Operation, PublicInput, Proof, Transaction } from "@gribi/evm-rootsystem/Structs.sol";
+import { BaseThread, UpdateRegister } from "@gribi/evm-rootsystem/BaseThread.sol";
+
+// import { Example } from "../gribi/Example.sol"; 
+
 
 contract GribiSystem is System {
-    function call(Transaction transaction) public {
-        //find the module
-        BaseThread thread = Gribi.getThread(transaction.id);
-
-        //if the proof passes, shuffle along the inputs and ops to the function of the module
-        thread.call(transaction);
+    function setGribiAddress(address gribiAddress) public {
+        GribiConfig.set(gribiAddress);
     }
-    function call(Transaction transaction, Proof proof) public {
-        //find the module
-        BaseThread thread = Gribi.getThread(transaction.id);
 
-        //TODO:
-        //if there is a proof, verify it
-        //(and feed the key_hash in from the tree for function id from that module)
-        //(along with roots of the module)
+    function registerModules(address gribiAddress) public {
+        Gribi gribi = Gribi(gribiAddress);
+        // BaseThread[] memory threads = new BaseThread[](1);
 
-        //if the proof passes, shuffle along the inputs and ops to the function of the module
-        thread.call(transaction);
-        //the module will have access to codegen bits of MUD and ideally would want to build with those in mind
-        //however, that's tough, so I think instead what we do is just have the module only use it's internal memory
-        //if someone wants to integrate that internal memory into MUD they can do so easily by using some kind of hook mechanism
-        //then when it comes to reading from the client, we can write a module (in long term), but in short term just read from Gribi directly (I guess prob easiest thing)
-        //the alternative is having the whole fake tree live in MUD
-        //...can think about those alternatives
-        //TODO: implement hook mechanism
+        //TODO: Register your module here
+        // threads[0] = new Example();
+        // gribi.registerThreads(threads);
     }
+
+    function handleReturnValues(BaseThread thread) private {
+        // ReturnStack st = thread.getReturnValue(0);
+        UpdateRegister memory reg = thread.peekUpdates();
+        
+        // // this is revealCommitment
+        // if (reg.code == uint(Example.Codes.REVEAL_COMMITMENT)) {
+        //     //set the MUD table here for player key
+        //     uint256 secret = abi.decode(reg.value, (uint256));
+
+        //     //do something with that secret
+        // }
+        
+        // If I need to use some return value I can add it here
+    }
+
+    function execute(uint256 id, bytes memory data) public {
+        Gribi gribi = Gribi(address(GribiConfig.get()));
+        BaseThread thread = gribi.execute(id, data);
+        handleReturnValues(thread);
+    }
+
+    function execute(uint256 id, bytes memory data, Proof memory proof) public {
+        Gribi gribi = Gribi(address(GribiConfig.get()));
+        BaseThread thread = gribi.execute(id, data);
+        handleReturnValues(thread);
+    }
+
 }
