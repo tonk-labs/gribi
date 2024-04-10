@@ -6,7 +6,7 @@ import { BaseThread } from './BaseThread.sol';
 import { Operation, PublicInput, Proof, Transaction } from "./Structs.sol";
 import { IStateSubscriber } from "./IStateSubscriber.sol";
 
-contract Gribi {
+contract EVMRootSystem {
     address public creator;
     bytes32 public version;
     ThreadRegistry private registry;

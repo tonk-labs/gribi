@@ -1,28 +1,75 @@
-### GRIBI 
 ```
-            _ .-.    _ 
-           :_;: :   :_;
- .--. .--. .-.: `-. .-.
-' .; :: ..': :' .; :: :
-`._. ;:_;  :_;`.__.':_;
- .-. :                 
- `._.'                 
-
+.::..:-:::..............................................................
+.::.:::............... ...........==........... ... .. .................
+.:..................    ........:#@@+ ..........   .  . ................
+.:.............                .+@@@%:    . .  .       .    ............
+.:............   .  .   ..     -@@@@@+.      .         .    ............
+.............        .    . . .+@@@@@%-   .     .     .       ..........
+............                  :%@@@@@@*.     . .             .. .....  .
+.........                     =@@@@@@@@- .          .            ..    .
+........       .   .          _ .-.    _           .   .        ..    .
+...........                  :_;: :   :_;             .      .     ..  
+..........  ..:.   .--. .--. .-.: `-. .-.        .. .         .   ......
+.........   -%@#: ' .; :: ..': :' .; :: :   .  ..       .       ...... .
+........  .=@@@@: `._. ;:_;  :_;`.__.':_;                .       ....... 
+...... . .*@@@@%: ..-. :.-==+++***##****++=-.    .       .        ...... 
+.........=@@@@@@:  `._. .--======+++*++++==--:             .         . . 
+........:#@@@@@@-.   .  ..:-----=========--::.        =@@-      .  .....
+........=%@@@@@@=.. .       ..::-------::-.           -@@@=       . ....
+.......:*%@@@@@@*. .   .        .+##*++:.            .=@@@@=    . ......
+.......-#%%@@@@@%-        .      .+%%#-              :%@@@@%:.   .......
+.......=##%%%%%%%*.             ..+%@%+.  . .       .#@@@@@@=   ........
+......:+*#####%##*=.   .  .   .  .+###*:           .*%@@@@@@+.    ......
+......:++********++=:           .-**##*-.. .      :+*#%%%%%#*:  .. .....
+......-==++++++++==--:          :++***+=.       .-=+**######*=:..   ....
+.....::--=======---::.          :=+**+=:       .:-==++*****+++=...  ....
+....:.:::-----=+-:..        .             .    ..:--=++=+++====:........
+:::::....-=+*%%%*-    .  .    .    . .   .      ..:--=--=+--=--:........
+...:::::.:=+*#****:              .    .          . ..--==+=:-:..........
+......::..-++****-.   .    . .                 .     .+###+:............
+.:.:::.:::............       .  .                    :++*++-............
+:::::::.........:::...........    ..  ....    ..... ...:--:.............
+::::::::::::::...::::::..........................................::::...
+:::::::::::::..::::::::::::........................................:::::
 ```
 
-hidden information made simple
+## Gribi is an SDK for building Trust Infrastructure.
 
----
+What is Trust Infrastructure? Trust Infrastructure is authoritative and expressive communication and computation made through a networked suite of next-gen cryptosystems. With Trust Infrastructure, we can do fundamentally new things by sharing what we couldn't share before.
+
+Just a few examples:
+- Anonymous, private DAOs for secret coordination
+- On-chain hidden information mechanics
+- Identity-based private networks
+- FYEO content (For Your Eyes Only) or attribute locked content
+
+Building Trust infrastructure is hard. It requires deep technical know-how and strong interoperability between all the nodes of the system. So it's both a technical problem and a coordination problem. Gribi takes on both of these challenges.
+
+<hr/>
+<br/>
+
+**The Gribi interface allows for independent cryptosystems to more easily link together functionality without directly coordinating.**
+
+Gribi defines a simple interface through which the various nodes in a network may communicate with each other. These nodes pass messages through two primary formats: PCD and Signals. 
+- PCD or "Proof-Carrying Data" is a term first coined by StarkNet's Alessandro Chiesa and proposed as a general standard by 0xParc's PCD team. This format allows for the trivial federation of provable data and is highly composable. 
+- Signals are more specific and used to transmit state to RootSystems in Gribi. RootSystems encapsulate the behavior of external networks or systems. This allows a PCD or other intermediary mechanism to "commit" to state, broadcast updates to other networks or make operational transforms over state in any datastore. 
 
 
-In the heart of the Whispering Wood, where the moonlight danced with the shadows, there existed a peculiar library, unlike any other. This was not your ordinary collection of books and scrolls; it was the "Mycelium Archives," a wondrous place where the ancient knowledge of mushrooms and goblins converged.
+<br/>
+<br/>
 
-The library itself was a living entity, a grand network of towering mushroom shelves, pulsating with a soft, bioluminescent glow. Each mushroom cap, large and umbrella-like, bore the intricacies of hidden information, their surfaces etched with runic script that shimmered in the moon's caress. These were no ordinary texts; they were living documents, constantly growing, evolving, and holding the secrets of the ages.
+**Gribi uses modules, akin to packages, as the core functional unit for bundling and abstracting away complex functionality.**
 
-Goblins, the quirky custodians of this mystical trove, scurried between the shelves. They were not the mischievous creatures of lore but scholarly beings, robed in moss and adorned with acorn caps. Their eyes sparkled with the light of unquenchable curiosity, and their fingers, nimble and swift, tended to the mushroom tomes with utmost care. They spoke in hushed tones, a language as old as the forest itself, discussing the arcane and the mysterious.
+Modules in Gribi encapsulate complex behavior through the interfaces mentioned above. These modules can become quite powerful and expressive when they are built on-top of a RootSystem. Modules may consume other modules to nest complex behavior. This is possible as PCDs are universally composable. Furthermore, signals are designed to allow for composition within its RootSystem. This makes building modules easier, because modules can abstract complexity away from you and the RootSystem itself will encapsulate a great deal of complexity. Using modules is even easier as there is no cryptographic knowledge required for its install and use.
 
-The library held secrets beyond mere words. Whispering leaves, the murmur of underground streams, and the soft chorus of nocturnal creatures all contributed to the symphony of knowledge. The goblins knew that every rustle of a leaf, every drop of dew, was a letter in the endless story of the world.
+<hr/>
+<br/>
 
-In this enchanted haven, "hidden information made simple" was not just a motto but a living reality. The goblins had mastered the art of translating the complex language of nature into comprehensible insights. They guided wanderers and seekers alike through the labyrinth of shelves, revealing the wonders of the forest, the mysteries of the fungi, and the forgotten tales of goblin kind.
+Gribi is currently in alpha stage. That means it is rapidly changing, incomplete and may be unstable and insecure. We have opened it up for early feedback and value your efforts to make Trust Infrastructure a reality.
 
-The Mycelium Archives was more than a library; it was a bridge between worlds, a place where the veil of mystery was lifted, and the hidden wisdom of the ages was made accessible to those who dared to venture into the heart of the Whispering Wood.
+The best way to try out Gribi is to go to the gribi-playground. There are two walkthroughs available currently:
+
+1) Writing a module
+2) Using a module in MUD
+
+
