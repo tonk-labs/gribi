@@ -64,8 +64,9 @@ In Gribi, a **module** is a predefined way of generating and sending proofs that
 
 Some examples of modules (existing, or yet-to-be built) are:
 
-- Hidden loot generation
+- Oblivious transfer
 - Hidden movement
+- Hidden loot generation
 - Private procedurally-generated NFTs
 - Paranoia devices
 
