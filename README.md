@@ -60,9 +60,14 @@ Gribi defines a simple interface through which the various nodes in a network ma
 
 ## Modules in Gribi
 
-Gribi uses modules, akin to packages, as the core functional unit for bundling and abstracting away complex functionality.
+In Gribi, a **module** is a predefined way of generating and sending proofs that represented an idiosyncratic behaviour, somewhat akin to packages. This behaviour could be a hidden information mechanic in an onchain game, but could be many other things. Modules abstract away complex behaviour, keep code clean and can become quite powerful when they built on top of a RootSystem.
 
-In Gribi, a **module** is a predefined way of generating and sending proofs that represented an idiosyncratic behaviour. This behaviour could be a hidden information mechanic in an onchain game, but could be many other things. These modules can become quite powerful and expressive when they are built on top of a RootSystem. 
+Some examples of modules (existing, or yet-to-be built) are:
+
+- Hidden loot generation
+- Hidden movement
+- Private procedurally-generated NFTs
+- Paranoia devices
 
 Modules are designed to be maximally composable and interoperable; they may consume other modules to achieve complex, nested behavior. This is possible as PCDs are universally composable. Furthermore, signals are designed to allow for composition within its RootSystem. This makes building modules easier, because modules can abstract complexity away from you, and the RootSystem itself will encapsulate a great deal of complexity. Using modules is even easier as there is no cryptographic knowledge required for install and use.
 
