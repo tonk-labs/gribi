@@ -35,37 +35,40 @@
 
 ## Gribi is an SDK for building Trust Infrastructure.
 
-What is Trust Infrastructure? Trust Infrastructure is authoritative and expressive communication and computation made through a networked suite of next-gen cryptosystems. With Trust Infrastructure, we can do fundamentally new things by sharing what we couldn't share before.
+For millenia, individuals and institutions have communicated with each other, this being the foundation of coordinated flourishing. Our ability to communicate is empowered by particular tools. Collectively, these tools form a **communication infrastructure**. 
 
-Just a few examples:
+Thanks to advanced cryptography, we have powerful new tools that enable _expressive_ and _authoritative_ forms of communication. Some (including us) have started to call these new patterns **"trust infrastructure"**.
+
+With trust infrastructure, individuals, institutions - and more recently, intelligences - can build deep and prosperous relationships that could not exist otherwise.
+
+Here are a few examples:
 - Anonymous, private DAOs for secret coordination
 - On-chain hidden information mechanics
 - Identity-based private networks
-- FYEO content (For Your Eyes Only) or attribute locked content
+- Attribute-locked content
+- Instant oracles for smoother on/offramping
 
-Building Trust infrastructure is hard. It requires deep technical know-how and strong interoperability between all the nodes of the system. So it's both a technical problem and a coordination problem. Gribi takes on both of these challenges.
+Building trust infrastructure is hard. It requires deep technical know-how and strong interoperability between all nodes of a given system. This presents both technical problems and coordination problems. We designed Gribi to solve both these challenges.
 
-<hr/>
-<br/>
+## The Gribi interface
 
-**The Gribi interface allows for independent cryptosystems to more easily link together functionality without directly coordinating.**
+The Gribi interface allows for independent cryptosystems to more easily link together functionality without directly coordinating.
 
 Gribi defines a simple interface through which the various nodes in a network may communicate with each other. These nodes pass messages through two primary formats: PCD and Signals. 
-- PCD or "Proof-Carrying Data" is a term first coined by StarkNet's Alessandro Chiesa and proposed as a general standard by 0xParc's PCD team. This format allows for the trivial federation of provable data and is highly composable. 
-- Signals are more specific and used to transmit state to RootSystems in Gribi. RootSystems encapsulate the behavior of external networks or systems. This allows a PCD or other intermediary mechanism to "commit" to state, broadcast updates to other networks or make operational transforms over state in any datastore. 
+- **PCD** or "Proof-Carrying Data" is a term first coined by Starkware's Alessandro Chiesa and proposed as a general standard by 0xParc's PCD team. This format allows for the trivial federation of provable data and is highly composable. 
+- **Signals** are more specific and used to transmit state to RootSystems in Gribi. **RootSystems** are interfaces that encapsulate the behavior of external networks or systems, such as a blockchain or S3 instance. This allows a PCD or other intermediary mechanism to "commit" to state, broadcast updates to other networks or make operational transforms over state in any datastore. 
 
+## Modules in Gribi
 
-<br/>
-<br/>
+Gribi uses modules, akin to packages, as the core functional unit for bundling and abstracting away complex functionality.
 
-**Gribi uses modules, akin to packages, as the core functional unit for bundling and abstracting away complex functionality.**
+In Gribi, a **module** is a predefined way of generating and sending proofs that represented an idiosyncratic behaviour. This behaviour could be a hidden information mechanic in an onchain game, but could be many other things. These modules can become quite powerful and expressive when they are built on top of a RootSystem. 
 
-Modules in Gribi encapsulate complex behavior through the interfaces mentioned above. These modules can become quite powerful and expressive when they are built on-top of a RootSystem. Modules may consume other modules to nest complex behavior. This is possible as PCDs are universally composable. Furthermore, signals are designed to allow for composition within its RootSystem. This makes building modules easier, because modules can abstract complexity away from you and the RootSystem itself will encapsulate a great deal of complexity. Using modules is even easier as there is no cryptographic knowledge required for its install and use.
+Modules are designed to be maximally composable and interoperable; they may consume other modules to achieve complex, nested behavior. This is possible as PCDs are universally composable. Furthermore, signals are designed to allow for composition within its RootSystem. This makes building modules easier, because modules can abstract complexity away from you, and the RootSystem itself will encapsulate a great deal of complexity. Using modules is even easier as there is no cryptographic knowledge required for install and use.
 
-<hr/>
-<br/>
+## Project status
 
-Gribi is currently in alpha stage. That means it is rapidly changing, incomplete and may be unstable and insecure. We have opened it up for early feedback and value your efforts to make Trust Infrastructure a reality.
+Gribi is currently in alpha stage. It is rapidly changing, incomplete and may be unstable and insecure. We have opened it up for early feedback and value your efforts to build trust infrastructure conducive to our shared flourishing.
 
 The best way to try out Gribi is to go to the gribi-playground. There are two walkthroughs available currently:
 
