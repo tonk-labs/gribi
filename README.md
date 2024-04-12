@@ -35,7 +35,7 @@
 
 ## Gribi is an SDK for building Trust Infrastructure.
 
-For millenia, individuals and institutions have communicated with each other, this being the foundation of coordinated flourishing. Our ability to communicate is empowered by particular tools. Collectively, these tools form a **communication infrastructure**. 
+Individuals and institutions communicate; our ability to do so underscores all shared flourishing and relies on a particular set of tools. You can think of these tools as a **communication infrastructure**. 
 
 Thanks to advanced cryptography, we have powerful new tools that enable _expressive_ and _authoritative_ forms of communication. Some (including us) have started to call these new patterns **"trust infrastructure"**.
 
