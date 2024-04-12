@@ -60,7 +60,9 @@ Gribi defines a simple interface through which the various nodes in a network ma
 
 ## Modules in Gribi
 
-In Gribi, a **module** is a predefined way of generating and sending proofs that represented an idiosyncratic behaviour, somewhat akin to packages. This behaviour could be a hidden information mechanic in an onchain game, but could be many other things. Modules abstract away complex behaviours, keep code clean and can become quite powerful when they built on top of a RootSystem. Instead of spending months upskilling in the unstable ZK stack, ambitious developers can focus on their apps and let Gribi handle underlying cryptography.
+In Gribi, a **module** is a predefined way of generating and sending proofs that represent an idiosyncratic "information behaviour", somewhat akin to packages. This behaviour could be a hidden information mechanic in an onchain game, but could be many other distinctive ways for information to propagate and information asymmetries to build up / erode. 
+
+Modules are helpful because they abstract away complex behaviours, keep code clean and become quite powerful when they built on top of a RootSystem. Instead of spending months upskilling in the unstable ZK stack, ambitious developers can focus on their apps and let Gribi handle underlying cryptography.
 
 Some examples of modules (existing, or yet-to-be built) are:
 
