@@ -4,7 +4,7 @@ This document is meant to give a high-level intuition about what Gribi does toda
 
 > Because Gribi is very new, design choices have been made quite intentionally to allow for maxmimum flexibility and simplicity. Remember, premature optimization is the root of all evil! Think of this structure as young pliable bones which will harden and set as the framework matures.
 
-> It is possible to build a proof of concept applications with Gribi, but the experience of building with and using Gribi is primarily meant to be simulated in the repository [gribi-playground](https://github.com/tonk-gg/gribi-playground). This respository will also help you to understand how all the different parts fit together in the code.
+> It is possible to build a proof of concept applications with Gribi, but the experience of building with and using Gribi is best when done in the repository [gribi-playground](https://github.com/tonk-gg/gribi-playground). This respository will also help you to understand how all the different parts fit together in the code.
 
 <!-- TOC start (generated with https://github.com/derlin/bitdowntoc) -->
 
