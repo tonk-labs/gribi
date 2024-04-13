@@ -55,7 +55,7 @@ Building trust infrastructure is hard. It requires deep technical know-how and s
 The Gribi interface allows for independent cryptosystems to more easily link together functionality without directly coordinating.
 
 Gribi defines a simple interface through which the various nodes in a network may communicate with each other. These nodes pass messages through two primary formats: PCD and Signals. 
-- **PCD** or "Proof-Carrying Data" is a term first coined by Starkware's Alessandro Chiesa and proposed as a general standard by 0xParc's PCD team. This format allows for the trivial federation of provable data and is highly composable. 
+- **PCD** or "Proof-Carrying Data" is a term first coined by Alessandro Chiesa and proposed as a general standard by 0xParc's PCD team. This format allows for the trivial federation of provable data and is highly composable. 
 - **Signals** are more specific and used to transmit state to RootSystems in Gribi. **RootSystems** are interfaces that encapsulate the behavior of external networks or systems, such as a blockchain or S3 instance. This allows a PCD or other intermediary mechanism to "commit" to state, broadcast updates to other networks or make operational transforms over state in any datastore. 
 
 ## Modules in Gribi
