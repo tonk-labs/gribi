@@ -48,7 +48,7 @@ Here are a few examples:
 - Attribute-locked content
 - Instant oracles for smoother on/offramping
 
-Building trust infrastructure is hard. It requires deep technical know-how and strong interoperability between all nodes of a given system. This presents both technical problems and coordination problems. We designed Gribi to solve both these challenges.
+Building trust infrastructure is hard. It requires deep technical know-how and strong interoperability between all nodes of a given system. This presents both technical problems and coordination problems. We are creating Gribi to solve both these challenges.
 
 ## The Gribi interface
 
@@ -62,7 +62,7 @@ Gribi defines a simple interface through which the various nodes in a network ma
 
 In Gribi, a **module** is a predefined way of generating and sending proofs that represent an idiosyncratic "information behaviour", somewhat akin to packages. This behaviour could be a hidden information mechanic in an onchain game, but could be many other distinctive ways for information to propagate and information asymmetries to build up / erode. 
 
-Modules are helpful because they abstract away complex behaviours, keep code clean and become quite powerful when they built on top of a RootSystem. Instead of spending months upskilling in the unstable ZK stack, ambitious developers can focus on their apps and let Gribi handle underlying cryptography.
+Modules are helpful because they abstract away complex behaviours, keep code clean and become quite powerful when they are built on top of a RootSystem. Instead of spending months upskilling in the unstable ZK stack, ambitious developers can focus on their apps and let Gribi handle underlying cryptography.
 
 Some examples of modules (existing, or yet-to-be built) are:
 
@@ -76,11 +76,11 @@ Modules are designed to be maximally composable and interoperable; they may cons
 
 ## Project status
 
-Gribi is currently in alpha stage. It is rapidly changing, incomplete and may be unstable and insecure. We have opened it up for early feedback and value your efforts to build trust infrastructure conducive to our shared flourishing.
+Gribi is currently in alpha stage. It is rapidly changing, incomplete and may be unstable and insecure. We have opened it up for early feedback and value your efforts to build trust infrastructure conducive to our shared flourishing
+
+The best way to "grok" Gribi is by reading the [technical explainer](/TECHNICAL.md).
 
 The best way to try out Gribi is to go to the gribi-playground. There are two walkthroughs available currently:
 
-1) Writing a module
-2) Using a module in MUD
-
-
+1) [How to Write a Module](https://github.com/tonk-gg/gribi-playground/blob/main/playground/module/TUTORIAL.md)
+2) [How to Use a Module in MUD](https://github.com/tonk-gg/gribi-playground/blob/main/playground/game/TUTORIAL.md)
