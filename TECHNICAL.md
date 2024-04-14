@@ -9,79 +9,87 @@ This document is meant to give a high-level intuition about what Gribi does toda
 <!-- TOC start (generated with https://github.com/derlin/bitdowntoc) -->
 
 - [What is Gribi?](#what-is-gribi)
-   * [A design pattern](#a-design-pattern)
    * [A framework](#a-framework)
+   * [A design pattern](#a-design-pattern)
 - [What can I use Gribi for today?](#what-can-i-use-gribi-for-today)
-   * [EVMRootSystem for Hidden Information](#evmrootsystem-for-hidden-information)
-      + [Mud Integration](#mud-integration)
-      + [Ease Development](#ease-development)
-   * [Join the Gribi ecosystem](#join-the-gribi-ecosystem)
+   * [EVMRootSystem](#evmrootsystem)
+   * [Commit-Update-Reveal module](#commit-update-reveal-module)
+   * [MUD Integration](#mud-integration)
+- [Join the Gribi ecosystem](#join-the-gribi-ecosystem)
 - [Overview of Architecture](#overview-of-architecture)
    * [Gribi's EVMRootSystem and Example Modules](#gribis-evmrootsystem-and-example-modules)
       + [Vault](#vault)
       + [Module](#module)
       + [RootSystem](#rootsystem)
       + [Signal](#signal)
-   * [Ok, what if I want to use a module in my module?](#ok-what-if-i-want-to-use-a-module-in-my-module)
-   * [Ok, what if Gribi integrated with StarkNet?](#ok-what-if-gribi-integrated-with-starknet)
+- [Some handy features ](#some-handy-features)
+   * [Using modules in other modules ](#using-modules-in-other-modules)
+   * [Using Gribi in the Starknet ecosystem](#using-gribi-in-the-starknet-ecosystem)
    * [Propagating information](#propagating-information)
-   * [Trust Infrastructure](#trust-infrastructure)
+- [Trust infrastructure](#trust-infrastructure)
 
 <!-- TOC end -->
 
 # What is Gribi?
 
-## A design pattern
-
-Gribi is a set of interfaces describing a modular design pattern for advanced cryptographic systems and applications.
-
-Modules in this design pattern are meant to:
-- Interop with each other
-- Compose into each other
-- Encapsulate complex behavior
-
-Modules are distributed and consumed via external package managers. Currently there is only a Gribi library in typescript (so, most modules should be in NPM).
-
-Modules may communicate directly with each other or they may communicate with something called a RootSystem, which provides a unified interface to stateful systems (e.g. Ethereum, AWS, etc).
-
-The lines separating each component in the Gribi design pattern have been carefully chosen to avoid the need for extra glue code, monoliths and bespoke cryptographic logic.
+Gribi is an SDK for building trust infrastructure, but you can think of this SDK as both a framework and as a design pattern.
 
 ## A framework
 
-Gribi is a set of ready-made components and build tools to assist in working with Gribi modules in your code.
+You can think of Gribi as a framework for adding hidden state to your onchain game or decentralised app, so that you don't have to get into the cryptographic weeds. Gribi is really a set of ready-made components and build tools that streamline your ability to work with _Gribi modules_. 
 
-Certain components of this modular design pattern should be common to all apps and are non-trivial to build, such as a Vault to keep and protect private information on the user's device.
+As mentioned before, modules (in the context of Gribi) are a predefined way of generating and sending proofs that represent an idiosyncratic "information behaviour", somewhat akin to packages. This behaviour could be a hidden information mechanic in an onchain game, but could be many other distinctive ways for information to propagate and information asymmetries to build up / erode.
+
+Certain components of this modular design pattern should be common to all apps, and are non-trivial to build, such as a Vault to keep and protect private information on the user's device.
+
+## A design pattern
+
+You can also think of Gribi as a set of interfaces describing a modular design pattern for advanced cryptographic systems and applications. 
+
+Modules in this design pattern are meant to:
+- Interoperate with each other
+- Compose into each other
+- Encapsulate complex behavior
+
+Modules are distributed and consumed via external package managers. Currently there is only a Gribi library in Typescript (so most modules should be in NPM).
+
+Modules may communicate directly with each other or they may communicate with something called a RootSystem, which provides a unified interface to external stateful systems (e.g. Ethereum, AWS, etc).
+
+After a year of prototyping various apps and games that incorporate ZK, we've felt firsthand the unique pains and strains that go with applied cryptography. We've carefully picked the abstractions and distinctions that separate each component of the Gribi design pattern to streamline development, sidestepping the need for monoliths, middleware and bespoke cryptographic logic.
 
 # What can I use Gribi for today?
-In order for Gribi to be useful, it first needs some modules and rootsystems. That's why Gribi provides a rootsystem available out-of-the box.
 
-## EVMRootSystem for Hidden Information
-The EVMRootSystem bundles the typical structures used when building any zkApp:
+You can use Gribi to more easily add hidden information to your onchain game or any other decentralised app without compromising on all the qualities that make onchain development special. In order for Gribi to be useful, it first needs some modules and rootsystems, and if you're already using a state manager such as MUD or Dojo, you may need to integrate Gribi into that framework too.
+
+We've already done some of the groundwork here for you, including a pre-prepared EVMRootsystem, Commit-Update-Reveal module and a MUD integration.
+
+## EVMRootSystem
+
+As mentioned before, a rootsystem is an interface that encapsulates the behavior of external networks or systems, such as a blockchain or S3 instance. Gribi provides a rootsystem available out-of-the box.
+
+The EVMRootSystem is a rootsystem for interacting with the EVM. It bundles the typical structures used when building any zkApp:
 - Merkle trees
 - An on-chain verifier
 - Kernel circuit 
 - Noir libraries
 
-This bundle of functionality is exposed through the rootsystem interface, allowing for modules to programmatically define a range of behavior using verified off-chain compute with zero-knowledge proofs. 
+This bundle of functionality is exposed through a rootsystem interface, allowing for modules to programmatically define a range of behaviors using verified off-chain compute with zero-knowledge proofs. 
 
-The current example module in the [tonk-gg/gribi-playground/playground/module](https://github.com/tonk-gg/gribi-playground/tree/main/playground/module) expresses commit-update-reveal behavior, where a player may commit to some state (e.g. location) and then make all subsequent updates (new locations) to the commitment via zk proofs. This functionality allows for constraining private, off-chain state, like hidden player movement, according to the logic of a Noir circuit.
+## Commit-Update-Reveal module
 
-### Mud Integration
+The current example module in the [tonk-gg/gribi-playground/playground/module](https://github.com/tonk-gg/gribi-playground/tree/main/playground/module) expresses commit-update-reveal behavior, where a player may commit to some state (e.g. location) and then make all subsequent updates (new locations) to the commitment via ZK proofs. This functionality allows for constraining private, off-chain state, such as hidden player movement, according to the logic of a Noir circuit.
 
-[MUD](https://mud.dev) is a framework for building onchain applications.
+No one ever said you had to build a module from scratch! Building more complex cryptographic applications out of combinations of modules and abstractions over a rootsystem can take away the pain of building cryptographic apps.
 
-The mud-integration package is available for use with the EVMRootSystem, but remains incomplete and requires some manual setup. You may look at the [gribi-playground](https://github.com/tonk-gg/gribi-playground) for an example of how to integrate into a MUD game.
+## MUD Integration
 
-### Ease Development
+[MUD](https://mud.dev) is a framework for building ambitious onchain applications created by the Lattice team.
 
-No one ever said you had to build a module from scratch! Building more complex cryptographic applications out of combinations of modules and abstractions over a rootsystem can take away the pain of building cryptographic apps. The EVMRootSystem already makes building certain applications much easier.
+The MUD integration package is available for use with the EVMRootSystem, but remains incomplete and requires some manual setup. You may look at the [gribi-playground](https://github.com/tonk-gg/gribi-playground) for an example of how to integrate into a MUD game.
 
-Go see the [available example modules](https://github.com/tonk-gg/gribi-playground) in the gribi-playground.
-
-## Join the Gribi ecosystem
+# Join the Gribi ecosystem
 
 If you are building an advanced cryptographic system, writing and publishing a set of interfaces as modules with Gribi opens your cryptographic "stuff" up to other modules in the Gribi world and allows their cryptographic "stuff" to do interesting things in your system. That makes your system immediately more expressive and powerful. 
-
 
 # Overview of Architecture
 
@@ -139,7 +147,9 @@ export type StateUpdate = {
 }
 ```
 
-## Ok, what if I want to use a module in my module?
+# Some handy features 
+
+## Using modules in other modules 
 
 A great example of this might be a module which takes the "commit-update-reveal" module and uses it to define a much simpler "hidden player movement" module. I can expose a simple interface with just hide(x,y) and reveal() functions and a short update circuit which constrains movement to be no greater distance from previous location than 1. Under the hood, the commit-update-reveal module is doing everything else for us.
 
@@ -158,11 +168,9 @@ flowchart TD
     D --> |Signal| a2[EVM]
 ```
 
----
+## Using Gribi in the Starknet ecosystem
 
-## Ok, what if Gribi integrated with StarkNet?
-
-In the EVMRootSystem, modules must define extra onchain logic as part of their module, but let's say we create a new RootSystem for semaphore (to anonymously prove group membership) which doesn't require any extra logic outside the client. Now if someone comes along and decides they'd like to have their groups natively in StarkNet, they can create a new RootSystem to assist in proving set membership and all the existing modules that were built for the SemaphoreRootSystem will just work.
+In the EVMRootSystem, modules must define extra onchain logic as part of their module, but let's say we create a new RootSystem for Semaphore (to anonymously prove group membership) which doesn't require any extra logic outside the client. Now if someone comes along and decides they'd like to have their groups natively in Starknet, they can create a new RootSystem to assist in proving set membership and all the existing modules that were built for the SemaphoreRootSystem will just work.
 
 This is especially powerful when we're not just duplicating state, but signaling information across ecosystems which may then continue to propagate further.
 
@@ -184,12 +192,11 @@ flowchart TD
     B --> |Signal| a2        
 ```
 
----
-
 ## Propagating information
+
 RootSystems can also signal back to clients. Remember, a signal is just an operation or transform on some data. In the case where RootSystems transmit a signal it's a receipt of some transform or operation. Gribi defines an interface to receive these receipts and transform them into a new data type called PCD.
 
-PCD, or "Proof-Carrying Data", are self-evident blobs of data — that is, data which carries with itself a proof of its computation. PCD was first described by Alessandro Chiesa and only recently codified into a JSON format by the 0xParc PCD team. Gribi uses a more generalized version of the PCD SDK format in the hopes of defining an emergent standard.
+PCD, or "Proof-Carrying Data", are self-evident blobs of data — that is, data which carries with itself a proof of its computation. PCD was first described by Alessandro Chiesa and only recently codified into a JSON format by the 0xParc PCD team. Gribi uses a more generalized version of the PCD SDK format in the hopes of helping to define an emergent standard.
 
 PCDs are an excellent tool to federate bits of verified computation out to non-native networks and systems. 
 
@@ -226,9 +233,7 @@ export interface PCD<C = unknown, P = unknown> {
   }
 ```
 
----
-
-## Trust Infrastructure
+# Trust infrastructure
 
 If we smash all of these together, we get something which starts to look like a web of authoritative and expressive messages. You can began to express strange scenarios like:
 
