@@ -1,4 +1,6 @@
-This document is meant to give a high-level intuition about what Gribi does today, how it works and why.
+# A technical overview of Gribi
+
+This document is meant to give a high-level intuition about what Gribi does today, how it works and why. After a year of prototyping various apps and games that incorporate ZK, we've felt firsthand the unique pains and strains that go with applied cryptography. We've carefully picked the abstractions and distinctions that separate each component of the Gribi design pattern to streamline development, sidestepping the need for monoliths, middleware and bespoke cryptographic logic.
 
 >Caveat: Gribi is not production ready. Gribi is still in alpha stages and has been opened to the public for early developer feedback.
 
@@ -54,8 +56,6 @@ Modules in this design pattern are meant to:
 Modules are distributed and consumed via external package managers. Currently there is only a Gribi library in Typescript (so most modules should be in NPM).
 
 Modules may communicate directly with each other or they may communicate with something called a RootSystem, which provides a unified interface to external stateful systems (e.g. Ethereum, AWS, etc).
-
-After a year of prototyping various apps and games that incorporate ZK, we've felt firsthand the unique pains and strains that go with applied cryptography. We've carefully picked the abstractions and distinctions that separate each component of the Gribi design pattern to streamline development, sidestepping the need for monoliths, middleware and bespoke cryptographic logic.
 
 # What can I use Gribi for today?
 
