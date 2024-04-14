@@ -78,7 +78,7 @@ Modules are designed to be maximally composable and interoperable; they may cons
 
 After a year of prototyping various apps and games that incorporate ZK, we've felt firsthand the unique pains and strains that go with applied cryptography, and built the tool we wish we'd had access to back in 2023. We've carefully picked the abstractions and distinctions that separate each component of the Gribi design pattern to streamline development, sidestepping the need for monoliths, middleware and bespoke cryptographic logic.
 
-Gribi is currently in alpha stage. It is rapidly changing, incomplete and may be unstable and insecure. We have opened it up for early feedback and value your efforts to build trust infrastructure conducive to our shared flourishing
+Gribi is currently in alpha stage. It is rapidly changing, incomplete and may be unstable and insecure. We have opened it up for early feedback and value your efforts to build trust infrastructure conducive to our shared flourishing.
 
 The best way to "grok" Gribi is by reading the [technical explainer](/TECHNICAL.md).
 
