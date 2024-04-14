@@ -1,6 +1,6 @@
 # A technical overview of Gribi
 
-This document is meant to give a high-level intuition about what Gribi does today, how it works and why. After a year of prototyping various apps and games that incorporate ZK, we've felt firsthand the unique pains and strains that go with applied cryptography. We've carefully picked the abstractions and distinctions that separate each component of the Gribi design pattern to streamline development, sidestepping the need for monoliths, middleware and bespoke cryptographic logic.
+This document is meant to give a high-level intuition about what Gribi does today, how it works and why. After a year of prototyping various apps and games that incorporate ZK, we've felt firsthand the unique pains and strains that go with applied cryptography, and built the tool we wish we'd had access to back in 2023. We've carefully picked the abstractions and distinctions that separate each component of the Gribi design pattern to streamline development, sidestepping the need for monoliths, middleware and bespoke cryptographic logic.
 
 >Caveat: Gribi is not production ready. Gribi is still in alpha stages and has been opened to the public for early developer feedback.
 
