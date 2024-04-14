@@ -189,7 +189,7 @@ flowchart TD
 ## Propagating information
 RootSystems can also signal back to clients. Remember, a signal is just an operation or transform on some data. In the case where RootSystems transmit a signal it's a receipt of some transform or operation. Gribi defines an interface to receive these receipts and transform them into a new data type called PCD.
 
-PCD, or "Proof-Carrying Data", are self-evident blobs of data — that is, data which carries with itself a proof of its computation. PCD has been used in research since the early 90s and only recently codified into a JSON format by the 0xParc PCD team. Gribi uses a more generalized version of the PCD SDK format in the hopes of defining an emergent standard.
+PCD, or "Proof-Carrying Data", are self-evident blobs of data — that is, data which carries with itself a proof of its computation. PCD was first described by Alessandro Chiesa and only recently codified into a JSON format by the 0xParc PCD team. Gribi uses a more generalized version of the PCD SDK format in the hopes of defining an emergent standard.
 
 PCDs are an excellent tool to federate bits of verified computation out to non-native networks and systems. 
 
