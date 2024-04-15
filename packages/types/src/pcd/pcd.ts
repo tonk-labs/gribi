@@ -2,7 +2,7 @@
 
 /**
  * Going to use modified version of the PCD.team format from 0xParc in hopes of promoting an emergent standard. 
- * Their construction is simple and functional, alberit highly tailored to their conception of how to use PCDs for ZuPass.
+ * Their construction is simple and functional, albeit highly tailored to their conception of how to use PCDs for ZuPass.
  * 
  * This is an attempt to further generalize the format.
  * 

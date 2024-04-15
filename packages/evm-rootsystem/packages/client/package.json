@@ -61,13 +61,13 @@
   "peerDependencies": {
     "@noir-lang/backend_barretenberg": "^0.23.0",
     "@noir-lang/noir_js": "^0.23.0",
-    "@noir-lang/noirc_abi": "^0.23.0"
+    "@noir-lang/noirc_abi": "^0.23.0",
+    "@noir-lang/acvm_js": "^0.23.0"
   },
   "dependencies": {
     "crypto-js": "^4.2.0",
     "@gribi/evm-rootsystem-circuits": "../circuits",
     "@gribi/types": "../../../types",
-    "rollup-plugin-copy": "^3.5.0",
     "viem": "^2.7.22"
   }
 }
