@@ -3,7 +3,7 @@ import { CompiledCircuit, BarretenbergBackend, ProofData } from '@noir-lang/back
 import { InputMap } from '@noir-lang/noirc_abi';
 import { Noir } from '@noir-lang/noir_js'
 import * as CryptoJS from "crypto-js";
-import { toHex } from 'viem';
+import { toHex, encodePacked, keccak256 } from 'viem';
 
 
 //This might seem really, really dumb but it's the easiest way to ensure parity
@@ -14,7 +14,7 @@ import { toHex } from 'viem';
  * @param inputs an array of Fields 
  * @returns a Pedersen hash of the inputs
  */
-async function pedersenHash(inputs: bigint[]): Promise<bigint> {
+// async function pedersenHash(inputs: bigint[]): Promise<bigint> {
     // let padded = inputs;
     // if (inputs.length < 7) {
     //     padded = inputs.concat(Array(7 - inputs.length).fill(BigInt(0)))
@@ -30,7 +30,12 @@ async function pedersenHash(inputs: bigint[]): Promise<bigint> {
     // return BigInt(output.returnValue.toString());
     // Again we are turning this off because of the mess with Noir right now...
 
-    return BigInt(CryptoJS.SHA256(inputs.map((x) => x.toString()).join('')).toString());
+    // return BigInt(toHex(CryptoJS.SHA256(inputs.map((x) => x.toString()).join('')).toString()));
+// }
+
+async function keccak(inputs: bigint[]): Promise<bigint> {
+    const bytes = encodePacked(['uint256[]'], [inputs]);
+    return BigInt(keccak256(bytes)) as bigint;
 }
 
 /**
@@ -60,7 +65,8 @@ const generateNoirProof = async (circuit: CompiledCircuit, inputs: InputMap): Pr
 } 
 
 export const Utils = {
-    pedersenHash,
+    // pedersenHash,
+    keccak,
     rng,
     generateNoirProof,
     EmptyInput,

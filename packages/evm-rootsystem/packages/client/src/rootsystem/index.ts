@@ -57,6 +57,22 @@ export interface Module<T> {
   createModuleCalls: (call: NetworkCall) => T;
 }
 
+const sanitizeOperations = (operations: Operation[]): Operation[] => {
+  return operations.map((op) => {
+    let newOp = { ...op };
+    if (!op.nullifier) {
+      newOp.nullifier = 0
+    }
+    if (!op.value) {
+      newOp.value = 0
+    }
+    if (!op.opid) {
+      newOp.opid = 0
+    }
+    return newOp;
+  });
+} 
+
 const createTx = async (update: StateUpdate): Promise<Transaction> => {
   //do stuff with the kernel
   let proof: any;
@@ -71,8 +87,10 @@ const createTx = async (update: StateUpdate): Promise<Transaction> => {
 
   //This might be a horrible hack and would be better to do it right way if can fix Viem
   const signature = toFunctionSelector(`${update.method}(((uint256,uint256)[],(uint256,uint256,uint256)[]))`);
+  
+  //We use this super weird signature, because viem is somehow using mismatched versions when I install with pnpm, no idea why
   // const signature = sliceHex(keccak256(toHex(toBytes(`${method}(((uint256,uint256)[],(uint256,uint256,uint256)[]))`))), 0, 4);
-  const params = encodeAbiParameters(Inputs, [{ inputs: update.inputs, operations: update.operations }]);
+  const params = encodeAbiParameters(Inputs, [{ inputs: update.inputs, operations: sanitizeOperations(update.operations) }]);
   const data = concatHex([signature, params ?? '0x']);
 
   //TODO: update proof to be right data type
