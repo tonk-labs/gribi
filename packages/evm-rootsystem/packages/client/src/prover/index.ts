@@ -16,11 +16,16 @@ export const setup = async () => {
     ]);
   }
 
+
 const generateProof = async (circuit: CompiledCircuit, inputs: InputMap): Promise<ProofData> => {
-    const be = new BarretenbergBackend(circuit);
-    const noir  = new Noir(circuit, be);
-    const { witness } = await noir.execute(inputs);
-    return be.generateIntermediateProof(witness);
+    // const be = new BarretenbergBackend(circuit);
+    // const noir  = new Noir(circuit, be);
+    // const { witness } = await noir.execute(inputs);
+    // return be.generateIntermediateProof(witness);
+    return {
+        publicInputs: [],
+        proof: new Uint8Array(),
+    };
 } 
 
 export const prove = async (address: string, circuit: CompiledCircuit, inputs: PublicInput[], operations: Operation[], witnessMap: InputMap): Promise<ProofData> => {
