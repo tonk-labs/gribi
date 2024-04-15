@@ -62,7 +62,7 @@
     "@noir-lang/backend_barretenberg": "^0.23.0",
     "@noir-lang/noir_js": "^0.23.0",
     "@noir-lang/noirc_abi": "^0.23.0",
-    "@noir-lang/acvm_js": "^0.23.0"
+    "@noir-lang/acvm_js": "^0.43.0"
   },
   "dependencies": {
     "crypto-js": "^4.2.0",
