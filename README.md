@@ -84,5 +84,5 @@ The best way to "grok" Gribi is by reading the [technical explainer](/TECHNICAL.
 
 The best way to try out Gribi is to go to the gribi-playground. There are two walkthroughs available currently:
 
-1) [How to Write a Module](https://github.com/tonk-gg/gribi-playground/blob/main/playground/module/TUTORIAL.md)
+1) [How to Write a Module](https://github.com/tonk-gg/gribi-playground/blob/main/playground/module-template/TUTORIAL.md)
 2) [How to Use a Module in MUD](https://github.com/tonk-gg/gribi-playground/blob/main/playground/game/TUTORIAL.md)
