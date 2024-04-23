@@ -1,6 +1,7 @@
 import { CompiledCircuit, BarretenbergBackend, ProofData } from '@noir-lang/backend_barretenberg';
 import { InputMap, InputValue } from '@noir-lang/noirc_abi';
 import { Noir } from '@noir-lang/noir_js'
+import { toHex } from 'viem';
 
 import { PublicInput, Operation, EVMRootSystem } from 'src';
 import { Forest } from '../forest'; 
@@ -18,14 +19,11 @@ export const setup = async () => {
 
 
 const generateProof = async (circuit: CompiledCircuit, inputs: InputMap): Promise<ProofData> => {
-    // const be = new BarretenbergBackend(circuit);
-    // const noir  = new Noir(circuit, be);
-    // const { witness } = await noir.execute(inputs);
-    // return be.generateIntermediateProof(witness);
-    return {
-        publicInputs: [],
-        proof: new Uint8Array(),
-    };
+    const be = new BarretenbergBackend(circuit);
+    const noir  = new Noir(circuit, be);
+    console.log(inputs);
+    const { witness } = await noir.execute(inputs);
+    return be.generateProof(witness);
 } 
 
 export const prove = async (address: string, circuit: CompiledCircuit, inputs: PublicInput[], operations: Operation[], witnessMap: InputMap): Promise<ProofData> => {
@@ -36,22 +34,23 @@ export const prove = async (address: string, circuit: CompiledCircuit, inputs: P
     if (operations.length > 8) {
         throw new Error("operations cannot exceed size of 8 entries");
     }
+    // Correct padding logic for inputs
+    let sanitizedInputs = inputs.concat([...Array(8 - inputs.length)].map(() => ({
+      slot: toHex(0),
+      value: toHex(0)
+  }))).map((i) => i as InputMap);
 
-    let sanitizedInputs = inputs.concat(new Array(8 - inputs.length).map(() => ({
-        slot: 0,
-        value: 0
-    }))).map((i) => i as InputMap);
+  // Correct padding logic for operations
+  let sanitizedOperations = operations.concat([...Array(8 - operations.length)].map(() => ({
+      opid: toHex(0),
+      value: toHex(0),
+      nullifier: toHex(0)
+  }))).map((i) => i as InputMap);
 
-    let sanitizedOperations = operations.concat(new Array(8 - inputs.length).map(() => ({
-        opid: 0,
-        value: 0,
-        nullifier: 0
-    }))).map((i) => i as InputMap);
-
-    witnessMap['commitment_root'] = 0;
-    witnessMap['nullifier_root'] = 0;
-    witnessMap['public_root'] = 0;
-    witnessMap["address"] = address;
+    witnessMap['commitment_root'] = toHex(0);
+    witnessMap['nullifier_root'] = toHex(0);
+    witnessMap['public_root'] = toHex(0);
+    witnessMap["address"] = toHex(address);
     witnessMap["inputs"] = sanitizedInputs;
     witnessMap["operations"] = sanitizedOperations;
 
