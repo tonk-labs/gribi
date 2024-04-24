@@ -55,18 +55,10 @@ function rng(bitsSecurity?: number): BigInt {
 const EmptyOp = () => ({ opid: 0, value: 0, nullifier: 0 });
 const EmptyInput = () => ({ slot: 0, value: 0 });
 
-const generateNoirProof = async (circuit: CompiledCircuit, inputs: InputMap): Promise<ProofData> => {
-    const be = new BarretenbergBackend(circuit);
-    const noir  = new Noir(circuit, be);
-    const { witness } = await noir.execute(inputs);
-    return be.generateIntermediateProof(witness);
-} 
-
 export const Utils = {
     pedersenHash,
     keccak,
     rng,
-    generateNoirProof,
     EmptyInput,
     EmptyOp,
 }
