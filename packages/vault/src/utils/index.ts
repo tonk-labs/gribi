@@ -44,14 +44,14 @@ async function keccak(inputs: bigint[]): Promise<bigint> {
  * @param bitsSecurity  allows you to configure bits of security, but it should be multiple of 8
  */
 function rng(bitsSecurity?: number): BigInt {
-    let nBits = 128;
+    let nBits = 248;
     if (bitsSecurity) {
         nBits = bitsSecurity % 8 !== 0 ? (
             bitsSecurity > 8 ? (Math.round(bitsSecurity / 8) * 8) : 8
         ) : bitsSecurity;
     }
     const rand = CryptoJS.lib.WordArray.random(nBits / 8);
-    return BigInt(toHex(rand.toString()));
+    return BigInt(`0x${rand.toString()}`);
 }
 
 const EmptyOp = () => ({ opid: 0, value: 0, nullifier: 0 });
