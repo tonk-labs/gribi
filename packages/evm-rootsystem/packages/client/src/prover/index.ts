@@ -18,7 +18,7 @@ export const setup = async () => {
   }
 
 
-const generateProof = async (circuit: CompiledCircuit, inputs: InputMap): Promise<ProofData> => {
+const generateProof = async (circuit: NoirCircuit, inputs: InputMap): Promise<ProofData> => {
     const be = new BarretenbergBackend(circuit);
     const noir  = new Noir(circuit, be);
     console.log(inputs);
@@ -26,7 +26,7 @@ const generateProof = async (circuit: CompiledCircuit, inputs: InputMap): Promis
     return be.generateProof(witness);
 } 
 
-export const prove = async (address: string, circuit: CompiledCircuit, inputs: PublicInput[], operations: Operation[], witnessMap: InputMap): Promise<ProofData> => {
+export const prove = async (address: string, circuit: NoirCircuit, inputs: PublicInput[], operations: Operation[], witnessMap: InputMap): Promise<ProofData> => {
     const roots = Forest.getRoots();
     if (inputs.length > 8 ) {
         throw new Error("inputs cannot exceed size of 8 entries");
@@ -61,3 +61,6 @@ export const prove = async (address: string, circuit: CompiledCircuit, inputs: P
 
     return generateProof(circuit, witnessMap);
 }
+
+export type NoirCircuit = CompiledCircuit;
+
