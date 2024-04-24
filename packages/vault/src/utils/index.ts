@@ -14,24 +14,22 @@ import { toHex, encodePacked, keccak256 } from 'viem';
  * @param inputs an array of Fields 
  * @returns a Pedersen hash of the inputs
  */
-// async function pedersenHash(inputs: bigint[]): Promise<bigint> {
-    // let padded = inputs;
-    // if (inputs.length < 7) {
-    //     padded = inputs.concat(Array(7 - inputs.length).fill(BigInt(0)))
-    // }
-    // if (inputs.length > 7) {
-    //     throw new Error("Private inputs must be 7 elements or less");
-    // }
-    // const backend = new BarretenbergBackend(helpers);
-    // const noir = new Noir(helpers, backend);
-    // let output = await noir.execute({
-    //     "input": padded.map((e) => e.toString())
-    // });
-    // return BigInt(output.returnValue.toString());
-    // Again we are turning this off because of the mess with Noir right now...
+async function pedersenHash(inputs: bigint[]): Promise<bigint> {
+    let padded = inputs;
+    if (inputs.length < 7) {
+        padded = inputs.concat(Array(7 - inputs.length).fill(BigInt(0)))
+    }
+    if (inputs.length > 7) {
+        throw new Error("Private inputs must be 7 elements or less");
+    }
+    const backend = new BarretenbergBackend(helpers);
+    const noir = new Noir(helpers, backend);
+    let output = await noir.execute({
+        "input": padded.map((e) => e.toString())
+    });
 
-    // return BigInt(toHex(CryptoJS.SHA256(inputs.map((x) => x.toString()).join('')).toString()));
-// }
+    return BigInt(output.returnValue.toString());
+}
 
 async function keccak(inputs: bigint[]): Promise<bigint> {
     const bytes = encodePacked(['uint256[]'], [inputs]);
@@ -65,7 +63,7 @@ const generateNoirProof = async (circuit: CompiledCircuit, inputs: InputMap): Pr
 } 
 
 export const Utils = {
-    // pedersenHash,
+    pedersenHash,
     keccak,
     rng,
     generateNoirProof,

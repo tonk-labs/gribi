@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@noir-lang/types':
-    specifier: ^0.23.0
-    version: 0.23.0
+    specifier: ^0.27.0
+    version: 0.27.0
   '@types/node':
     specifier: ^20.11.30
     version: 20.11.30
@@ -229,14 +229,8 @@ packages:
     dev: true
     optional: true
 
-  /@noir-lang/noirc_abi@0.23.0:
-    resolution: {integrity: sha512-MYBkj6hSpiimlcBmX6n/hY+y2Kk39Qh8qre5c41GZPvmC88f7MqhAdDTSsfrFnNg1pvpY5UX6/G1D8jEkT11qA==}
-    dev: false
-
-  /@noir-lang/types@0.23.0:
-    resolution: {integrity: sha512-jgA4thao714WHiXVE3KS7Y2vQnH3gvsVM1cO1kQsihgmqX5VO+Kk6bI3Yck9HUvAqgcjJgSeOeBtbdTYSzjzkw==}
-    dependencies:
-      '@noir-lang/noirc_abi': 0.23.0
+  /@noir-lang/types@0.27.0:
+    resolution: {integrity: sha512-T1JuoyPUfGP94HEQDitoHXo/jwxSm8cizL7brroJuOwFujiehpqreLHcV4fc0W4uOV/2l4BHQ7zntrQcfWqbbg==}
     dev: false
 
   /@rollup/rollup-android-arm-eabi@4.12.0:

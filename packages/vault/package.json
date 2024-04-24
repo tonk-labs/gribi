@@ -47,27 +47,28 @@
     "docs:preview": "vitepress preview docs"
   },
   "devDependencies": {
+    "@babel/plugin-syntax-top-level-await": "^7.14.5",
     "@changesets/cli": "^2.26.2",
     "@types/crypto-js": "^4.2.2",
     "@types/node": "^20.11.5",
+    "@vitejs/plugin-react": "^4.2.1",
     "@vitest/coverage-v8": "^0.34.6",
     "jsdom": "^24.0.0",
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
     "vite-plugin-dts": "^3.7.2",
+    "vite-plugin-top-level-await": "^1.4.1",
     "vitepress": "^1.0.0-rc.24",
     "vitest": "^0.34.6"
   },
-  "peerDependencies": {
-    "@noir-lang/backend_barretenberg": "^0.23.0",
-    "@noir-lang/noir_js": "^0.23.0",
-    "@noir-lang/noirc_abi": "^0.23.0"
-  },
   "dependencies": {
+    "@gribi/circuits": "../circuits",
+    "@gribi/types": "../types",
+    "@noir-lang/backend_barretenberg": "^0.27.0",
+    "@noir-lang/noir_js": "^0.27.0",
+    "@noir-lang/noirc_abi": "^0.27.0",
     "crypto-js": "^4.2.0",
     "rollup-plugin-copy": "^3.5.0",
-    "viem": "^2.7.22",
-    "@gribi/types": "../types",
-    "@gribi/circuits": "../circuits"
+    "viem": "^2.7.22"
   }
 }
