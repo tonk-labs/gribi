@@ -1,10 +1,11 @@
 import { expect, test } from 'vitest'
 import { Utils } from '../../src/utils/index'
+import { toHex } from 'viem'
 
 test('test pedersen hash on empty input', async () => {
     let result = await Utils.pedersenHash([]);
     expect(result).toBe(
-        3005290860655143328229594257782869703809332764983783944062462322544469669551n
+        14735921632689459485083976756786850169391762506238474562176450493537065610012n 
     );
 })
 

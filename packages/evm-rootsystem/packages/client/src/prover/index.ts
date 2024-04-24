@@ -21,7 +21,6 @@ export const setup = async () => {
 const generateProof = async (circuit: NoirCircuit, inputs: InputMap): Promise<ProofData> => {
     const be = new BarretenbergBackend(circuit);
     const noir  = new Noir(circuit, be);
-    console.log(inputs);
     const { witness } = await noir.execute(inputs);
     return be.generateProof(witness);
 } 

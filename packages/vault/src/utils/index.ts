@@ -16,16 +16,17 @@ import { toHex, encodePacked, keccak256 } from 'viem';
  */
 async function pedersenHash(inputs: bigint[]): Promise<bigint> {
     let padded = inputs;
-    if (inputs.length < 7) {
-        padded = inputs.concat(Array(7 - inputs.length).fill(BigInt(0)))
+    if (inputs.length < 8) {
+        padded = inputs.concat(Array(8 - inputs.length).fill(0))
     }
-    if (inputs.length > 7) {
+    if (inputs.length > 8) {
         throw new Error("Private inputs must be 7 elements or less");
     }
     const backend = new BarretenbergBackend(helpers);
     const noir = new Noir(helpers, backend);
+    const input = padded.map((e) => toHex(e));
     let output = await noir.execute({
-        "input": padded.map((e) => e.toString())
+        "input": input
     });
 
     return BigInt(output.returnValue.toString());
