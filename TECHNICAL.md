@@ -4,9 +4,9 @@ This document is meant to give a high-level intuition about what Gribi does toda
 
 >Caveat: Gribi is not production ready. Gribi is still in alpha stages and has been opened to the public for early developer feedback.
 
-> Because Gribi is very new, design choices have been made quite intentionally to allow for maxmimum flexibility and simplicity. Remember, premature optimization is the root of all evil! Think of this structure as young pliable bones which will harden and set as the framework matures.
+> Because Gribi is very new, design choices have been made quite intentionally to allow for maximum flexibility and simplicity. Remember, premature optimization is the root of all evil! Think of this structure as young pliable bones which will harden and set as the framework matures.
 
-> It is possible to build a proof of concept applications with Gribi, but the experience of building with and using Gribi is best when done in the repository [gribi-playground](https://github.com/tonk-gg/gribi-playground). This respository will also help you to understand how all the different parts fit together in the code.
+> It is possible to build a proof of concept applications with Gribi, but the experience of building with and using Gribi is best when done in the repository [gribi-playground](https://github.com/tonk-gg/gribi-playground). This repository will also help you to understand how all the different parts fit together in the code.
 
 <!-- TOC start (generated with https://github.com/derlin/bitdowntoc) -->
 
@@ -235,7 +235,7 @@ export interface PCD<C = unknown, P = unknown> {
 
 # Trust infrastructure
 
-If we smash all of these together, we get something which starts to look like a web of authoritative and expressive messages. You can began to express strange scenarios like:
+If we smash all of these together, we get something which starts to look like a web of authoritative and expressive messages. You can begin to express strange scenarios like:
 
 1. "I can join semaphore group X only if I get a high score in the game A" 
 2. "Prove I am in the high score group to get access to a website"
